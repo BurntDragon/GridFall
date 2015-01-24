@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
+		transform.parent=GameObject.Find("World").transform;
+
 		gameInstance = GameObject.Find("Main").GetComponent<Game>();
 
 		GoUpButton = GameObject.Find ("UpButton");
@@ -250,6 +252,8 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
+
+
 			Vector3 pos=Vector3.zero;
 			stream.Serialize(ref pos);
 			transform.localPosition=pos;
