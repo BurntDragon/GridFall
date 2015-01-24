@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EvtManager : MonoBehaviour 
+public class EvtManager : MonoBehaviour
 {
 	public static Game gameInstance;
 
 	public delegate void playerAction(int player);
 	public static event playerAction playerFell;
+	public static event playerAction playerMove;
 	public static event playerAction playerReachedEnd;
+
+	public delegate void tileAction(string tile);
+	public static event tileAction tileUp;
+	public static event tileAction tileWarn;
+	public static event tileAction tileDown;
 
 	//public delegate void junctionAction(string nextPathToFollow, int nodeToFollow);
 	//public static event junctionAction nextPathToFollow;
-
 
 	void Awake()
 	{
@@ -23,7 +28,7 @@ public class EvtManager : MonoBehaviour
 		Debug.Log ("EvtManager - onGameStart");
 		gameInstance.isStarted = true;
 	}
-
+	
 	public static void onGameFinish()
 	{
 		Debug.Log ("EvtManager - onGameFinish");

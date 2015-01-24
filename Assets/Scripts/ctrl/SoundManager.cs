@@ -2,68 +2,68 @@
 using System.Collections;
 
 [RequireComponent (typeof (AudioSource))]
-public class CtrlPlayerSoundManager : MonoBehaviour 
+public class SoundManager : MonoBehaviour 
 {
-	public AudioClip[] footsteps;
 	public AudioClip tileUp;
 	public AudioClip tileWarn;
 	public AudioClip tileDown;
-	//public AudioClip ;
-	//public AudioClip ;
-	//public AudioClip ;
+
+	public AudioClip playerFell;
+	public AudioClip playerMove;
+	public AudioClip playerReachedEnd;
 	
 	//public AudioClip[] deposit;
 	
-//	void OnEnable()
-//	{
-//		EventManager.stuffPickup += playCollect;
-//		EventManager.gotStunned += playBirds;
-//		EventManager.stunnEnemy += playRangedStun;
-//		EventManager.stunnEnemy += playLaugh;
-//	}
-//	
-//	void OnDisable()
-//	{
-//		EventManager.stuffPickup -= playCollect;
-//		EventManager.gotStunned -= playBirds;
-//		EventManager.stunnEnemy -= playRangedStun;
-//		EventManager.stunnEnemy -= playLaugh;
-//	}
+	void OnEnable()
+	{
+		EvtManager.playerFell += playPlayerFell;
+		EvtManager.playerMove += playPlayerMove;
+		EvtManager.playerReachedEnd += playPlayerReachedEnd;
+		EvtManager.tileUp += playTileUp;
+		EvtManager.tileWarn += playTileWarn;
+		EvtManager.tileDown += playTileDown;
+	}
 	
-//	void playRangedStun(string enemy)
-//	{
-//		GetComponent<AudioSource>().PlayOneShot(closeStun);
-//	}
-	
-	void playTileUp()
+	void OnDisable()
+	{
+		EvtManager.playerFell -= playPlayerFell;
+		EvtManager.playerMove -= playPlayerMove;
+		EvtManager.playerReachedEnd -= playPlayerReachedEnd;
+		EvtManager.tileUp -= playTileUp;
+		EvtManager.tileWarn -= playTileWarn;
+		EvtManager.tileDown -= playTileDown;
+	}
+
+	void playTileUp(string tile)
 	{
 		GetComponent<AudioSource>().PlayOneShot(tileUp);
 	}
 	
-	void playTileWarn()
+	void playTileWarn(string tile)
 	{
 		GetComponent<AudioSource>().PlayOneShot(tileWarn);
 	}
 	
-	void playTileDown()
+	void playTileDown(string tile)
 	{
 		GetComponent<AudioSource>().PlayOneShot(tileDown);
 	}
+
+	void playPlayerFell(int player)
+	{
+		GetComponent<AudioSource>().PlayOneShot(playerFell);
+	}
 	
-//	public void playFootsteps()
-//	{
-//		GetComponent<AudioSource>().PlayOneShot(footsteps[Random.Range(0, (footsteps.Length-1))]);
-//	}
-//	
-//	void playBirds(string enemy)
-//	{
-//		GetComponent<AudioSource>().PlayOneShot(birds);
-//	}
-//	
-//	void playLaugh(string enemy)
-//	{
-//		GetComponent<AudioSource>().PlayOneShot(laugh[Random.Range(0, laugh.Length-1)]);
-//	}
+	void playPlayerMove(int player)
+	{
+		GetComponent<AudioSource>().PlayOneShot(playerMove);
+	}
+	
+	void playPlayerReachedEnd(int player)
+	{
+		GetComponent<AudioSource>().PlayOneShot(playerReachedEnd);
+	}
+	
 //	
 //	public void playDeposit(int sound)
 //	{
