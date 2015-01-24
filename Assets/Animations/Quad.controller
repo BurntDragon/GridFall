@@ -7,11 +7,17 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Quad
   serializedVersion: 2
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: goUp
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
-    m_Name: Base Layer
-    m_StateMachine: {fileID: 110719738}
+    m_Name: Base
+    m_StateMachine: {fileID: 110739642}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
@@ -20,34 +26,98 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &110219738
+--- !u!1101 &110116536
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110265742}
+  m_DstState: {fileID: 110233050}
+  m_TransitionDuration: .600000024
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: goUp
+    m_EventTreshold: 0
+    m_ExitTime: .399999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110193578
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110233050}
+  m_DstState: {fileID: 110265742}
+  m_TransitionDuration: .247921661
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: goUp
+    m_EventTreshold: 0
+    m_ExitTime: .399999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1102 &110233050
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: tilePulse
+  m_Name: tileDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 735a8cd37f8c75a4dba703fa3d58a086, type: 2}
-  m_ParentStateMachine: {fileID: 110719738}
-  m_Position: {x: 50, y: 50, z: 0}
+  - {fileID: 7400000, guid: 9e7386e6f57221242854646a120da8df, type: 2}
+  m_ParentStateMachine: {fileID: 110739642}
+  m_Position: {x: 168, y: 36, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1107 &110719738
+--- !u!1102 &110265742
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: tileUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 9de21745befb02b44a1edd43d909690f, type: 2}
+  m_ParentStateMachine: {fileID: 110739642}
+  m_Position: {x: -72, y: 36, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1107 &110739642
 StateMachine:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base Layer
-  m_DefaultState: {fileID: 110219738}
+  m_Name: Base
+  m_DefaultState: {fileID: 110265742}
   m_States:
-  - {fileID: 110219738}
+  - {fileID: 110265742}
+  - {fileID: 110233050}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_OrderedTransitions: {}
+  m_OrderedTransitions:
+    data:
+      first: {fileID: 110233050}
+      second:
+      - {fileID: 110193578}
+    data:
+      first: {fileID: 110265742}
+      second:
+      - {fileID: 110116536}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: 48, y: -36, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
