@@ -87,7 +87,10 @@ public class Player : MonoBehaviour
 			goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
 
-			checkIfRightMoveandIncrementIndex ();
+		if (!checkIfRightMoveandIncrementIndex ()) {
+			goPlayer.transform.localPosition=new Vector3(0,0,0);
+
+				}
 	}
 	
 }
