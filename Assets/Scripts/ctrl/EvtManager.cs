@@ -25,19 +25,19 @@ public class EvtManager : MonoBehaviour
 
 	public void onGameStart()
 	{
-		Debug.Log ("EvtManager - onGameStart");
+		// Debug.Log ("EvtManager - onGameStart");
 		gameInstance.isStarted = true;
 	}
 	
 	public static void onGameFinish()
 	{
-		Debug.Log ("EvtManager - onGameFinish");
+		// Debug.Log ("EvtManager - onGameFinish");
 		gameInstance.isFinished = true;
 	}
 	
 	public static void onPlayerFell(int player)
 	{
-		Debug.Log ("EvtManager - onPlayerFell" + player.ToString());
+		// Debug.Log ("EvtManager - onPlayerFell" + player.ToString());
 
 		if(playerFell != null)
 		{	
@@ -47,7 +47,7 @@ public class EvtManager : MonoBehaviour
 
 	public static void onPlayerReachedEnd(int player)
 	{
-		Debug.Log ("EvtManager - onPlayerReachedEnd" + player.ToString());
+		// Debug.Log ("EvtManager - onPlayerReachedEnd" + player.ToString());
 		if(playerReachedEnd != null)
 		{	
 			playerReachedEnd(player);
@@ -56,7 +56,7 @@ public class EvtManager : MonoBehaviour
 
 	public static void onTileDown(string tile)
 	{
-		Debug.Log ("EvtManager - onTileDown" + tile);
+		// Debug.Log ("EvtManager - onTileDown" + tile);
 		
 		if(tileDown != null)
 		{	
@@ -66,7 +66,7 @@ public class EvtManager : MonoBehaviour
 	
 	public static void onTileWarn(string tile)
 	{
-		Debug.Log ("EvtManager - onTileWarn" + tile);
+		// Debug.Log ("EvtManager - onTileWarn" + tile);
 		if(tileWarn != null)
 		{	
 			tileWarn(tile);
@@ -75,7 +75,7 @@ public class EvtManager : MonoBehaviour
 
 	public static void onTileUp(string tile)
 	{
-		Debug.Log ("EvtManager - onTileUp" + tile);
+		// Debug.Log ("EvtManager - onTileUp" + tile);
 		
 		if(tileUp != null)
 		{	

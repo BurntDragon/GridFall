@@ -9,7 +9,6 @@ public class NetworkManager : MonoBehaviour
 
 	private HostData[] hostList;
 	
-	public GameObject playerPrefab;
 	public GameObject button;
 	
 	public GameObject menu;
@@ -18,6 +17,8 @@ public class NetworkManager : MonoBehaviour
 	public int playerCount=0;
 
 	private bool listNotShow = false;
+
+	private Game daGame;
 
 	public void StartServer()
 	{
@@ -32,7 +33,7 @@ public class NetworkManager : MonoBehaviour
 
 	void Start()
 	{
-
+		daGame = GameObject.Find ("Main").GetComponent<Game> ();
 	}
 
 	void Update()
@@ -60,13 +61,13 @@ public class NetworkManager : MonoBehaviour
 
 	void OnServerInitialized()
 	{
-		Debug.Log("Server Initialized");
+		// Debug.Log("Server Initialized");
 		init();
 	}
 
 	void OnPlayerConnected()
 	{
-		Debug.Log("Client connected");
+		// Debug.Log("Client connected");
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
@@ -79,7 +80,7 @@ public class NetworkManager : MonoBehaviour
 
 	void OnConnectedToServer()
 	{
-		Debug.Log("Server Joined");
+		// Debug.Log("Server Joined");
 		init();
 	}
 
@@ -97,13 +98,16 @@ public class NetworkManager : MonoBehaviour
 	private void SpawnPlayer()
 	{
 		playerCount++;
-		GameObject player = (GameObject) Network.Instantiate(playerPrefab, new Vector3(playerCount, playerCount, playerCount), Quaternion.identity, 0);
+		daGame.addPlayer(playerCount.ToString());
 	}
 
 	private void init()
 	{
-		//menu.SetActive(false);
+		menu.SetActive(false);
+		gameUi.SetActive(true);
+
+		GameObject.Find ("Grid").GetComponent<CtrlGrid> ().generatePrimitives ();
+
 		SpawnPlayer();
-		//gameUi.SetActive(true);
 	}
 }

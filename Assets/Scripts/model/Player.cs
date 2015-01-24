@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
 		for (int i=0; i<neighbours.Length; i++) 
 		{
 			string neghborName= "x"+neighbours[i].x+"y"+neighbours[i].y;
-			//Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
+			//// Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
 			GameObject possibleNeghbor = GameObject.Find(neghborName);
 
 			if (possibleNeghbor)
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
 	
 	void checkIfRightMoveandIncrementIndex ()
 	{
-//		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
+//		// Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
 		if (pathIndex+1>=path.Length)
 		{
 //				EvtManager.playerReachedEnd(player);
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
 			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
 			timeLeftOnTile=maxTimeLeftOnTile;
 
-			//Debug.Log("checkIfRightMoveandIncrementIndex - tileup: " + getTileName(pos));
+			//// Debug.Log("checkIfRightMoveandIncrementIndex - tileup: " + getTileName(pos));
 			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 		} 
 		else 
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
 	{
 		GameObject.Find(getTileName(path[pathIndex])).GetComponent<CtrlTile>().onTileDown();
 
-		//		Debug.Log ("fell: fellen!!!");
+		//		// Debug.Log ("fell: fellen!!!");
 		pathIndex = 0;
 		pos = new Point(spawnPoint.x,spawnPoint.y);
 		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);

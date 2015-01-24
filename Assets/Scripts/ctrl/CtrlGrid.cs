@@ -11,7 +11,7 @@ public class CtrlGrid : MonoBehaviour
 	// Use this for initialization
 	void Start () 	
 	{
-		generatePrimitives();
+		//generatePrimitives();
 	}
 	
 	// Update is called once per frame

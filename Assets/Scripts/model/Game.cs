@@ -12,18 +12,13 @@ public class Game : MonoBehaviour
 	public bool isStarted;
 	public bool isFinished;
 
-	void Start () 
+	void Awake () 
 	{
 		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
 		spawnPoints.Add (new Point (0,0));
 		spawnPoints.Add (new Point (grid.width-1,0));
 		spawnPoints.Add (new Point (0,grid.height-1));
 		spawnPoints.Add (new Point (grid.width-1,grid.height-1));
-
-		addPlayer ("1");
-		addPlayer ("2");
-		addPlayer ("3");
-		addPlayer ("4");
 	}
 	
 	void Update () 
@@ -33,9 +28,10 @@ public class Game : MonoBehaviour
 
 	public void addPlayer(string id)
 	{
-		GameObject player = (GameObject) GameObject.Instantiate (playerPrefab);
+		Debug.Log ("Game - addPlayer - id" + id);
+		GameObject player = (GameObject) Network.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity, 0);;
 
-		if ("1".Equals(id)) player.GetComponent<Player> ().isMe=true;
+		player.GetComponent<Player>().isMe = player.GetComponent<NetworkView>().isMine;
 
 		player.name = "player" + id;
 		player.transform.parent = GameObject.Find ("World").transform;
