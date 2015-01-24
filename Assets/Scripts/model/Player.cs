@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 			pathIndex++;
 			if (pathIndex+1==path.Length)
 			{
-//				EvtManager.win(player);
+//				EvtManager.playerReachedEnd(player);
 			}
 
 			return true;
