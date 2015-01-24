@@ -40,6 +40,7 @@ public class Game : MonoBehaviour
 		player.name = "player" + id;
 		player.transform.parent = GameObject.Find ("World").transform;
 		player.GetComponent<Player> ().pos = new Point (spawnPoints [playerIDs.Count].x, spawnPoints [playerIDs.Count].y);
+		player.GetComponent<Player> ().spawnPoint = spawnPoints [playerIDs.Count];
 //		player.transform = new Vector3 (spawnPoints [playerIDs.Count].x, spawnPoints [playerIDs.Count].y);
 		player.transform.localPosition = Vector3.zero;
 		playerIDs.Add (id);

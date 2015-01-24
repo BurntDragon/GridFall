@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 	public float timeLeftOnTile=0;
 
 	public Point pos=new Point(0,0);
+	public Point spawnPoint=new Point(0,0);
 	public Point[] path;
 	public int pathIndex=0;
 
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 	private GameObject GoLeftButton;
 	private GameObject GoRightButton;
 	private GameObject GoLocalTime;
+
 
 
 	// Use this for initialization
@@ -65,16 +67,30 @@ public class Player : MonoBehaviour
 		goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		goPlayer.renderer.material.color = Color.red;
 
+//		if (!isMe)
+//		{
+//			for (int i=0;i<path.Length;i++)
+//			{
+//				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+//				switch (gameObject.name)
+//				{
+//				case "PlayerName1": go.renderer.material.color=Color.red; break;
+//				case "PlayerName2": go.renderer.material.color=Color.blue;break;
+//				case "PlayerName3": go.renderer.material.color=Color.green;break;
+//				case "PlayerName4": go.renderer.material.color=Color.cyan;break;
+//				}
+//
+//				go.transform.parent=this.transform;
+//				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
+//				go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
+//			}
+//		}
+
 		if (!isMe)
 		{
-			for (int i=0;i<path.Length;i++)
-			{
-				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-				go.transform.parent=this.transform;
-				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
-				go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
-			}
+			createNextStep();
 		}
+
 	}
 	
 	// Update is called once per frame
@@ -89,9 +105,26 @@ public class Player : MonoBehaviour
 			}
 
 			GoLocalTime.GetComponent<Text> ().text = "You die in: " + System.Math.Round ((double)timeLeftOnTile, 2).ToString ();
+
 		}
 	}
 
+	void createNextStep()
+	{
+		string name=this.gameObject.name+"NextStep";
+		GameObject go = GameObject.Find (name);
+		Destroy (go);
+
+		if (pathIndex + 1 < path.Length) 
+		{
+			go = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+			go.name=name;
+			go.transform.parent = this.transform;
+			go.transform.localPosition = new Vector3 ((float)path [pathIndex + 1].x, (float)path [pathIndex + 1].y, 0);
+			go.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+		}
+
+	}
 
 	void checkIfRightMoveandIncrementIndex ()
 	{
@@ -111,6 +144,8 @@ public class Player : MonoBehaviour
 		{
 			fell();
 		}
+
+		createNextStep ();
 	}
 
 	public void move(int x)
@@ -143,8 +178,8 @@ public class Player : MonoBehaviour
 	void fell()
 	{
 		pathIndex = 0;
-		pos = new Point (0, 0);
-		goPlayer.transform.localPosition = new Vector3 (0, 0, 0);
+		pos = spawnPoint;
+		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
 		timeLeftOnTile = maxTimeLeftOnTile;
 
 		///XXX
