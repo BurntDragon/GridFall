@@ -31,17 +31,22 @@ public class CtrlTile : MonoBehaviour
 		}
 	}
 
-	void onTileUp()
+	public void onTileUp()
 	{
 		GetComponent<Animator>().SetBool("goUp", true);
 	}
 
-	void onTileWarn()
+	public void onTileWarn()
 	{
-
+		
 	}
 
-	void onTileDown()
+	public void onTileMarkNext()
+	{
+		
+	}
+
+	public void onTileDown()
 	{
 		GetComponent<Animator>().SetBool("goUp", false);
 	}

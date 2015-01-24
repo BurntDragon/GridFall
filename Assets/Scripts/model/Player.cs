@@ -68,22 +68,22 @@ public class Player : MonoBehaviour
 
 //		if (!isMe)
 //		{
-			for (int i=0;i<path.Length;i++)
-			{
-				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-				float z=0;
-				switch (gameObject.name)
-				{
-					case "player1": go.renderer.material.color=Color.red; z=-0.2f; break;
-					case "player2": go.renderer.material.color=Color.blue;z=-0.1f; break;
-					case "player3": go.renderer.material.color=Color.green;z=0.0f; break;
-					case "player4": go.renderer.material.color=Color.cyan;z=0.1f; break;
-				}
-
-				go.transform.parent=this.transform;
-				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,z);
-				go.transform.localScale=new Vector3(0.2f,0.2f,0.2f);
-			}
+//			for (int i=0;i<path.Length;i++)
+//			{
+//				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+//				float z=0;
+//				switch (gameObject.name)
+//				{
+//					case "player1": go.renderer.material.color=Color.red; z=-0.2f; break;
+//					case "player2": go.renderer.material.color=Color.blue;z=-0.1f; break;
+//					case "player3": go.renderer.material.color=Color.green;z=0.0f; break;
+//					case "player4": go.renderer.material.color=Color.cyan;z=0.1f; break;
+//				}
+//
+//				go.transform.parent=this.transform;
+//				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,z);
+//				go.transform.localScale=new Vector3(0.2f,0.2f,0.2f);
+//			}
 //		}
 
 		if (!isMe)
@@ -110,28 +110,42 @@ public class Player : MonoBehaviour
 
 	void createNextStep()
 	{
-		string name=this.gameObject.name+"NextStep Player: " + this.name;
-		GameObject go = GameObject.Find (name);
-		Destroy (go);
+//		string name=this.gameObject.name+"NextStep Player: " + this.name;
+//		GameObject go = GameObject.Find (name);
+//		Destroy (go);
 
 		if (pathIndex + 1 < path.Length) 
 		{
-			go = GameObject.CreatePrimitive (PrimitiveType.Sphere);
-			switch (gameObject.name)
-				{
-				case "player1": go.renderer.material.color=Color.red; break;
-				case "player2": go.renderer.material.color=Color.blue;break;
-				case "player3": go.renderer.material.color=Color.green;break;
-				case "player4": go.renderer.material.color=Color.cyan;break;
-				}
-			go.name=name;
-			go.transform.parent = this.transform;
-			go.transform.localPosition = new Vector3 ((float)path [pathIndex + 1].x, (float)path [pathIndex + 1].y, 0);
-			go.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+//			go = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+//			switch (gameObject.name)
+//				{
+//				case "player1": go.renderer.material.color=Color.red; break;
+//				case "player2": go.renderer.material.color=Color.blue;break;
+//				case "player3": go.renderer.material.color=Color.green;break;
+//				case "player4": go.renderer.material.color=Color.cyan;break;
+//				}
+//			go.name=name;
+//			go.transform.parent = this.transform;
+//			go.transform.localPosition = new Vector3 ((float)path [pathIndex + 1].x, (float)path [pathIndex + 1].y, 0);
+//			go.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+			string name= "x"+path [pathIndex + 1].x+"y"+(float)path [pathIndex + 1].y;
+			GameObject go = GameObject.Find (name);
+			go.GetComponent<CtrlTile>().onTileMarkNext();
 		}
-
 	}
 
+	void createPossibleSteps()
+	{
+		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
+		Point [] neighbours=PathModeler.getPossibleNeighbours(pos,grid.width);
+		for (int i=0; i<neighbours.Length; i++) 
+		{
+			string name= "x"+neighbours[i].x+"y"+neighbours[i].y;
+			GameObject.Find(name).GetComponent<CtrlTile>().onTileUp();
+		}
+	}
+
+	
 	void checkIfRightMoveandIncrementIndex ()
 	{
 //		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
@@ -142,9 +156,14 @@ public class Player : MonoBehaviour
 		}
 		else if (pos.Equals (path[pathIndex + 1])) 
 		{
+			GameObject.Find(getTileName(path[pathIndex-1])).GetComponent<CtrlTile>().onTileDown();
+
 			pathIndex++;
 			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
 			timeLeftOnTile=maxTimeLeftOnTile;
+
+			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp();
+
 		} 
 		else 
 		{
@@ -152,6 +171,7 @@ public class Player : MonoBehaviour
 		}
 
 		createNextStep();
+		createPossibleSteps();
 	}
 
 	public void move(int x)
@@ -163,7 +183,7 @@ public class Player : MonoBehaviour
 
 			if (x == 0 && pos.y+1<grid.height) 
 			{
-					pos.y+=1;
+				pos.y+=1;
 			}
 			else
 			if (x == 1 && pos.y>0) 
@@ -228,4 +248,9 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public static string getTileName(Point p)
+	{
+		string name= "x"+p.x+"y"+p.y;
+		return name;
+	}
 }

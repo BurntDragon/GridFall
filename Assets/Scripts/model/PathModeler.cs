@@ -111,7 +111,7 @@ public class PathModeler : System.Object
 		return steps.ToArray();
 	}
 
-	public Point getRandomNeighbour(Point v)
+	public  Point getRandomNeighbour(Point v )
 	{
 		List<Point> l = new List<Point>();
 
@@ -136,4 +136,31 @@ public class PathModeler : System.Object
 		}
 		return l[Random.Range(0,l.Count)];
 	}
+
+	public static Point [] getPossibleNeighbours(Point v,int bounds)
+	{
+		List<Point> l = new List<Point>();
+		
+		if (v.x > 0) 
+		{
+			l.Add(new Point(v.x-1,v.y));
+		}
+		
+		if (v.y > 0) 
+		{
+			l.Add(new Point(v.x,v.y-1));
+		}
+		
+		if (v.x <bounds ) 
+		{
+			l.Add(new Point(v.x+1,v.y));
+		}
+		
+		if (v.y <bounds ) 
+		{
+			l.Add(new Point(v.x,v.y+1));
+		}
+		return l.ToArray();
+	}
+
 }

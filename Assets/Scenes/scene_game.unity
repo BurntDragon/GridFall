@@ -2083,6 +2083,7 @@ GameObject:
   - 64: {fileID: 1693482537}
   - 23: {fileID: 1693482536}
   - 95: {fileID: 1693482535}
+  - 114: {fileID: 1693482539}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -2162,6 +2163,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2129476049}
   m_GameObject: {fileID: 1693482533}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1693482539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11484680, guid: 410a0eb408faaa94e893969ee3d35391,
+    type: 2}
+  m_PrefabInternal: {fileID: 2129476049}
+  m_GameObject: {fileID: 1693482533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f376cf294abf354cbfa6782b9008b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPath: 0
+  isPlayerClose: 0
+  isCountingDown: 0
+  timeLeftOnTile: 0
 --- !u!1 &1719815085
 GameObject:
   m_ObjectHideFlags: 0
