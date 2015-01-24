@@ -185,4 +185,35 @@ public class Player : MonoBehaviour
 		///XXX
 		//EvtManager.onPlayerFell(1);
 	}
+
+	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			int cnt=path.Length;
+			stream.Serialize(ref cnt);
+			for (int i=0;i<cnt;i++)
+			{
+				Point p=path[i];
+				stream.Serialize(ref p.x);
+				stream.Serialize(ref p.y);
+			}
+		}
+		else
+		{
+			int cnt=0;
+			stream.Serialize(ref cnt);
+			Point[] newPath=new Point[cnt];
+			for (int i=0;i<cnt;i++)
+			{
+				int x=0;
+				int y=0;
+				stream.Serialize(ref x);
+				stream.Serialize(ref y);
+				newPath[i]=new Point(x,y);
+			}
+
+		}
+	}
+
 }
