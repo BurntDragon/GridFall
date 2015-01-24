@@ -70,22 +70,22 @@ public class Player : MonoBehaviour
 
 //		if (!isMe)
 //		{
-			for (int i=0;i<path.Length;i++)
-			{
-				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-				float z=0;
-				switch (gameObject.name)
-				{
-					case "player1": go.renderer.material.color=Color.red; z=-0.2f; break;
-					case "player2": go.renderer.material.color=Color.blue;z=-0.1f; break;
-					case "player3": go.renderer.material.color=Color.green;z=0.0f; break;
-					case "player4": go.renderer.material.color=Color.cyan;z=0.1f; break;
-				}
-
-				go.transform.parent=this.transform;
-				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,z);
-				go.transform.localScale=new Vector3(0.2f,0.2f,0.2f);
-			}
+//			for (int i=0;i<path.Length;i++)
+//			{
+//				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+//				float z=0;
+//				switch (gameObject.name)
+//				{
+//					case "player1": go.renderer.material.color=Color.red; z=-0.2f; break;
+//					case "player2": go.renderer.material.color=Color.blue;z=-0.1f; break;
+//					case "player3": go.renderer.material.color=Color.green;z=0.0f; break;
+//					case "player4": go.renderer.material.color=Color.cyan;z=0.1f; break;
+//				}
+//
+//				go.transform.parent=this.transform;
+//				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,z);
+//				go.transform.localScale=new Vector3(0.2f,0.2f,0.2f);
+//			}
 //		}
 
 		if (!isMe)
@@ -148,6 +148,7 @@ public class Player : MonoBehaviour
 		{
 			pathIndex++;
 			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
+			timeLeftOnTile=maxTimeLeftOnTile;
 		} 
 		else 
 		{
