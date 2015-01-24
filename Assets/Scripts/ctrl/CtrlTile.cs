@@ -7,7 +7,7 @@ public class CtrlTile : MonoBehaviour
 
 	public bool isPath = false;
 	public bool isPlayerClose = false;
-	public bool isCountingDown = false;
+	//public bool isCountingDown = false;
 
 	public float timeLeftOnTile = 0;
 
@@ -20,34 +20,45 @@ public class CtrlTile : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (isCountingDown) 
+		if (timeLeftOnTile > 0) 
 		{
 			timeLeftOnTile -= Time.deltaTime;
 
 			if (timeLeftOnTile<0)
 			{
-				EvtManager.onTileDown(this.name);
+				onTileDown();
 			}
 		}
 	}
 
-	public void onTileUp()
+	public void onTileUp(float timeToFall)
 	{
-		GetComponent<Animator>().SetBool("goUp", true);
+		timeLeftOnTile = timeToFall;
+
+		if (!GetComponent<Animator> ().enabled) 
+		{
+				GetComponent<Animator> ().enabled = true;
+		}else 
+		{
+				GetComponent<Animator> ().SetBool ("goUp", true);
+		}
+
+		EvtManager.onTileUp(this.name);
 	}
 
 	public void onTileWarn()
 	{
-		
+		EvtManager.onTileWarn(this.name);
 	}
 
 	public void onTileMarkNext()
 	{
-		
+		GetComponent<Animator>().SetBool("markForPossibleNext", true);
 	}
-
+	
 	public void onTileDown()
 	{
 		GetComponent<Animator>().SetBool("goUp", false);
+		EvtManager.onTileDown(this.name);
 	}
 }

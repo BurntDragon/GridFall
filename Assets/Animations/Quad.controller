@@ -12,6 +12,12 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
+    m_DefaultBool: 1
+    m_Controller: {fileID: 9100000}
+  - m_Name: markForPossibleNext
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
@@ -35,8 +41,8 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110265742}
   m_DstState: {fileID: 110233050}
-  m_TransitionDuration: .600000024
-  m_TransitionOffset: 0
+  m_TransitionDuration: .357065856
+  m_TransitionOffset: .0158434752
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: goUp

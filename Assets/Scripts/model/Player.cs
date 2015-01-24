@@ -140,8 +140,14 @@ public class Player : MonoBehaviour
 		Point [] neighbours=PathModeler.getPossibleNeighbours(pos,grid.width);
 		for (int i=0; i<neighbours.Length; i++) 
 		{
-			string name= "x"+neighbours[i].x+"y"+neighbours[i].y;
-			GameObject.Find(name).GetComponent<CtrlTile>().onTileUp();
+			string neghborName= "x"+neighbours[i].x+"y"+neighbours[i].y;
+			//Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
+			GameObject possibleNeghbor = GameObject.Find(neghborName);
+
+			if (possibleNeghbor)
+			{
+				possibleNeghbor.GetComponent<CtrlTile>().onTileMarkNext();
+			}
 		}
 	}
 
@@ -156,14 +162,17 @@ public class Player : MonoBehaviour
 		}
 		else if (pos.Equals (path[pathIndex + 1])) 
 		{
-			GameObject.Find(getTileName(path[pathIndex-1])).GetComponent<CtrlTile>().onTileDown();
+			if (pathIndex > 0)
+			{
+				GameObject.Find(getTileName(path[pathIndex])).GetComponent<CtrlTile>().onTileDown();
+			}
 
 			pathIndex++;
 			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
 			timeLeftOnTile=maxTimeLeftOnTile;
 
-			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp();
-
+			//Debug.Log("checkIfRightMoveandIncrementIndex - tileup: " + getTileName(pos));
+			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 		} 
 		else 
 		{
@@ -185,18 +194,15 @@ public class Player : MonoBehaviour
 			{
 				pos.y+=1;
 			}
-			else
-			if (x == 1 && pos.y>0) 
+			else if (x == 1 && pos.y>0) 
 			{
 				pos.y-=1;
 			}
-			else
-			if (x == 3 && pos.x+1<grid.width) 
+			else if (x == 3 && pos.x+1<grid.width) 
 			{
 				pos.x+=1;
 			}
-			else
-			if (x == 2 && pos.x>0) 
+			else if (x == 2 && pos.x>0) 
 			{
 				pos.x-=1;
 			}
@@ -208,7 +214,9 @@ public class Player : MonoBehaviour
 
 	void fell()
 	{
-//		Debug.Log ("fell: fellen!!!");
+		GameObject.Find(getTileName(path[pathIndex])).GetComponent<CtrlTile>().onTileDown();
+
+		//		Debug.Log ("fell: fellen!!!");
 		pathIndex = 0;
 		pos = new Point(spawnPoint.x,spawnPoint.y);
 		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
@@ -250,7 +258,6 @@ public class Player : MonoBehaviour
 
 	public static string getTileName(Point p)
 	{
-		string name= "x"+p.x+"y"+p.y;
-		return name;
+		return "x"+p.x+"y"+p.y;
 	}
 }
