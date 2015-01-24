@@ -59,7 +59,10 @@ public class Player : MonoBehaviour
 		timeLeftOnTile = maxTimeLeftOnTile;
 		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
 
-		path = new PathModeler ().generatePath (pos, new Point (grid.width/2, grid.height/2), 10);
+		if (isMe) 
+		{
+			path = new PathModeler ().generatePath (pos, new Point (grid.width / 2, grid.height / 2), 10);
+		}
 
 		goPlayer=GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		goPlayer.transform.parent=this.transform;
@@ -228,6 +231,7 @@ public class Player : MonoBehaviour
 
 	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
+		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
 		if (stream.isWriting)
 		{
 			int cnt=path.Length;

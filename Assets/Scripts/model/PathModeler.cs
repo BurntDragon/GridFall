@@ -26,19 +26,12 @@ public class PathModeler : System.Object
 		Point milestone1 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
 		Point milestone2 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
 		Point center = new Point (bounds / 2 , bounds / 2 );
+
 		while (milestone1.Equals(center)) 
 		{
 			milestone1 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
-		}while (milestone1.Equals(center)) 
-		{
-			milestone1 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
-		}while (milestone1.Equals(center)) 
-		{
-			milestone1 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
-		}while (milestone1.Equals(center)) 
-		{
-			milestone1 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
 		}
+
 		while (milestone2.Equals(center)) 
 		{
 			milestone2 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));

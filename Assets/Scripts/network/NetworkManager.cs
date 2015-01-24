@@ -82,6 +82,7 @@ public class NetworkManager : MonoBehaviour
 	{
 		// Debug.Log("Server Joined");
 		init();
+//		SpawnPlayer ();
 	}
 
 	public void RefreshHostList()
