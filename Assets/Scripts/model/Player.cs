@@ -64,10 +64,12 @@ public class Player : MonoBehaviour
 			path = new PathModeler ().generatePath (pos, new Point (grid.width / 2, grid.height / 2), 10);
 		}
 
-		goPlayer=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		goPlayer.transform.parent=this.transform;
-		goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
-		goPlayer.renderer.material.color = Color.red;
+		goPlayer = this.gameObject;
+
+		GameObject goPlayerSphere=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		goPlayerSphere.transform.parent=this.transform;
+		goPlayerSphere.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
+		goPlayerSphere.renderer.material.color = Color.red;
 
 //		if (!isMe)
 //		{
