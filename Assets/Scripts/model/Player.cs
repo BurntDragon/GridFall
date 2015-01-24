@@ -17,20 +17,22 @@ public class Player : MonoBehaviour
 	void Start () 
 	{
 		timeLeftOnTile = maxTimeLeftOnTile;
-		path = new PathModeler ().generatePath (pos, new Point (8, 8), 10);
+		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
+
+		path = new PathModeler ().generatePath (pos, new Point (grid.width/2, grid.height/2), 10);
 
 		goPlayer=GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		goPlayer.transform.parent=this.transform;
 		goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		goPlayer.renderer.material.color = Color.red;
 
-//		for (int i=0;i<path.Length;i++)
-//		{
-//			GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-//			go.transform.parent=this.transform;
-//			go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
-//			go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
-//		}
+		for (int i=0;i<path.Length;i++)
+		{
+			GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			go.transform.parent=this.transform;
+			go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
+			go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
+		}
 	}
 	
 	// Update is called once per frame

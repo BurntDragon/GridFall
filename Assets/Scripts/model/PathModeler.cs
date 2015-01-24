@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PathModeler : System.Object 
 {
-	public int bounds=16;
+	public int bounds=13;
 //	public int numberOfSteps=10;
 
 	int [,] tempGrid;
