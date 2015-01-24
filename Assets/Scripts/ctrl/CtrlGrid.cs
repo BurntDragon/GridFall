@@ -13,7 +13,7 @@ public class CtrlGrid : MonoBehaviour
 	{
 		generatePrimitives();
 
-		new PathModeler ().generatePath (new Point(0,0),new Point(8,8),12 );
+		new PathModeler ().generatePath (new Point(0,0),new Point(width/2,height/2),width+4 );
 	}
 	
 	// Update is called once per frame
@@ -32,7 +32,6 @@ public class CtrlGrid : MonoBehaviour
 				go.transform.parent=this.transform;
 				go.transform.localPosition=new Vector3(x,y,0);
 				go.transform.localScale=new Vector3(0.9f,0.9f,0.9f);
-//				go.transform.eulerAngles=new Vector3(90,0,0);
 
 
 			}
