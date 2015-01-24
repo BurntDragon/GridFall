@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
 	public float timeLeftOnTile=0;
 
 	public Point pos=new Point(0,0);
-	Point[] path;
-	int pathIndex=0;
+	public Point[] path;
+	public int pathIndex=0;
 
 	GameObject goPlayer;
 
@@ -24,13 +24,13 @@ public class Player : MonoBehaviour
 		goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		goPlayer.renderer.material.color = Color.red;
 
-		for (int i=0;i<path.Length;i++)
-		{
-			GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-			go.transform.parent=this.transform;
-			go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
-			go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
-		}
+//		for (int i=0;i<path.Length;i++)
+//		{
+//			GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+//			go.transform.parent=this.transform;
+//			go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
+//			go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
+//		}
 	}
 	
 	// Update is called once per frame
@@ -44,29 +44,27 @@ public class Player : MonoBehaviour
 	}
 
 
-	bool checkIfRightMoveandIncrementIndex ()
+	void checkIfRightMoveandIncrementIndex ()
 	{
+
+		if (pathIndex+1>=path.Length)
+		{
+			//				EvtManager.playerReachedEnd(player);
+			goPlayer.transform.localPosition=new Vector3(path[path.Length-1].x,path[path.Length-1].y,0);
+		}
+		else
 		if (pos.Equals (path [pathIndex + 1])) 
 		{
-			if (pathIndex+1>=path.Length)
-			{
-//				EvtManager.playerReachedEnd(player);
-				goPlayer.transform.localPosition=new Vector3(path[pathIndex-1].x,path[pathIndex-1].y,0);
-
-			}
-			else
-			{
-				pathIndex++;
-			}
-
-			return true;
+			pathIndex++;
+			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
 		} 
 		else 
 		{
 			pathIndex=0;
 			pos=new Point(0,0);
-			return false;
+			goPlayer.transform.localPosition=new Vector3(0,0,0);
 		}
+
 	}
 
 	public void move(int x)
@@ -76,31 +74,24 @@ public class Player : MonoBehaviour
 		if (x == 0 && pos.y+1<grid.height) 
 		{
 				pos.y+=1;
-				goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
 		else
 		if (x == 1 && pos.y>0) 
 		{
 			pos.y-=1;
-			goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
 		else
 		if (x == 3 && pos.x+1<grid.width) 
 		{
 			pos.x+=1;
-			goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
 		else
 		if (x == 2 && pos.x>0) 
 		{
 			pos.x-=1;
-			goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
 
-		if (!checkIfRightMoveandIncrementIndex ()) 
-		{
-			goPlayer.transform.localPosition=new Vector3(0,0,0);
-		}
+		checkIfRightMoveandIncrementIndex ();
 	}
 	
 }
