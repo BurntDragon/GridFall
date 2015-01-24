@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(NetworkView))]
 public class Player : MonoBehaviour 
 {
+	private Game gameInstance;
 
 	public float maxTimeLeftOnTile=10;
 	public float timeLeftOnTile=0;
@@ -14,6 +17,40 @@ public class Player : MonoBehaviour
 	GameObject goPlayer;
 
 	public bool isMe;
+
+	private GameObject GoUpButton;
+	private GameObject GoDownButton;
+	private GameObject GoLeftButton;
+	private GameObject GoRightButton;
+	private GameObject GoLocalTime;
+
+
+	// Use this for initialization
+	void Awake () 
+	{
+		gameInstance = GameObject.Find("Main").GetComponent<Game>();
+
+		GoUpButton = GameObject.Find ("UpButton");
+		GoDownButton = GameObject.Find ("DownButton");
+		GoLeftButton = GameObject.Find ("LeftButton");
+		GoRightButton = GameObject.Find ("RightButton");
+		GoLocalTime = GameObject.Find ("LocalTime");
+
+		if (networkView.isMine)
+		{
+			GoUpButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
+			GoUpButton.GetComponent<Button> ().onClick.AddListener (() => move (0));
+
+			GoDownButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
+			GoDownButton.GetComponent<Button> ().onClick.AddListener (() => move (1));
+
+			GoLeftButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
+			GoLeftButton.GetComponent<Button> ().onClick.AddListener (() => move (2));
+
+			GoRightButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
+			GoRightButton.GetComponent<Button> ().onClick.AddListener (() => move (3));
+		}
+	}
 
 	// Use this for initialization
 	void Start () 
@@ -43,11 +80,15 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		timeLeftOnTile -= Time.deltaTime;
-		if (timeLeftOnTile < 0) 
+		if (gameInstance.isStarted) 
 		{
-//			EvtManager.fell(this);
-			timeLeftOnTile=maxTimeLeftOnTile;
+			timeLeftOnTile -= Time.deltaTime;
+			if (timeLeftOnTile < 0) 
+			{
+					fell ();
+			}
+
+			GoLocalTime.GetComponent<Text> ().text = "You die in: " + System.Math.Round ((double)timeLeftOnTile, 2).ToString ();
 		}
 	}
 
@@ -68,12 +109,8 @@ public class Player : MonoBehaviour
 		} 
 		else 
 		{
-			pathIndex=0;
-			pos=new Point(0,0);
-			goPlayer.transform.localPosition=new Vector3(0,0,0);
-//				EvtManager.fell(fell);
+			fell();
 		}
-
 	}
 
 	public void move(int x)
@@ -102,5 +139,15 @@ public class Player : MonoBehaviour
 
 		checkIfRightMoveandIncrementIndex ();
 	}
-	
+
+	void fell()
+	{
+		pathIndex = 0;
+		pos = new Point (0, 0);
+		goPlayer.transform.localPosition = new Vector3 (0, 0, 0);
+		timeLeftOnTile = maxTimeLeftOnTile;
+
+		///XXX
+		//EvtManager.onPlayerFell(1);
+	}
 }

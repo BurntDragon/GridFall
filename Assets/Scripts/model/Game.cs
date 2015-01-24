@@ -6,8 +6,11 @@ public class Game : MonoBehaviour
 {
 	public GameObject playerPrefab;
 
-	public List<string> playerIDs=new List<string>();
-	public List<Point> spawnPoints= new List<Point>();
+	public List<string> playerIDs = new List<string>();
+	public List<Point> spawnPoints = new List<Point>();
+
+	public bool isStarted;
+	public bool isFinished;
 
 	void Start () 
 	{
@@ -43,7 +46,8 @@ public class Game : MonoBehaviour
 
 		if (playerIDs.Count == spawnPoints.Count) 
 		{
-			EvtManager.onGameStart();
+			//TODO: start da game
+			//isStarted = true;
 		}
 	}
 }

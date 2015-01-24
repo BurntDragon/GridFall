@@ -30,6 +30,7 @@ public class CtrlGrid : MonoBehaviour
 				go.transform.parent=this.transform;
 				go.transform.localPosition=new Vector3(x,y,0);
 				go.transform.localScale=new Vector3(0.9f,0.9f,0.9f);
+				go.name = "x"+ x.ToString() + "y" + y.ToString();
 			}
 		}
 	}
