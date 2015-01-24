@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
 		if (pathIndex+1>=path.Length)
 		{
-			//				EvtManager.playerReachedEnd(player);
+//				EvtManager.playerReachedEnd(player);
 			goPlayer.transform.localPosition=new Vector3(path[path.Length-1].x,path[path.Length-1].y,0);
 		}
 		else
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
 			pathIndex=0;
 			pos=new Point(0,0);
 			goPlayer.transform.localPosition=new Vector3(0,0,0);
+//				EvtManager.playerReachedEnd(fell);
 		}
 
 	}
