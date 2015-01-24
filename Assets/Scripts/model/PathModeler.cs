@@ -18,6 +18,8 @@ public class PathModeler : System.Object
 	public Point[] generatePath(Point from, Point to, int numberOfSteps)
 	{
 		List<Point> steps=new List<Point>();
+		steps.Add(from);
+
 		int xstep=to.x-from.x;
 		int ystep=to.y-from.y;
 

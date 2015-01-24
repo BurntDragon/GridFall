@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
 	public Point pos=new Point(0,0);
 	Point[] path;
-
+	int pathIndex=0;
 
 	GameObject goPlayer;
 
