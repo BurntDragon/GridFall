@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
 	void checkIfRightMoveandIncrementIndex ()
 	{
-		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!! Player: " + this.name);
+//		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
 		if (pathIndex+1>=path.Length)
 		{
 //				EvtManager.playerReachedEnd(player);
@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
 
 	void fell()
 	{
-		Debug.Log ("fell: fellen!!! Player: " + this.name);
+//		Debug.Log ("fell: fellen!!!");
 		pathIndex = 0;
 		pos = new Point(spawnPoint.x,spawnPoint.y);
 		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
@@ -198,32 +198,34 @@ public class Player : MonoBehaviour
 		//EvtManager.onPlayerFell(1);
 	}
 
-//	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
-//	{
-//		if (stream.isWriting)
-//		{
-//			int cnt=path.Length;
-//			stream.Serialize(ref cnt);
-//			for (int i=0;i<cnt;i++)
-//			{
-//				Point p=path[i];
-//				stream.Serialize(ref p.x);
-//				stream.Serialize(ref p.y);
-//			}
-//		}
-//		else
-//		{
-//			int cnt=0;
-//			stream.Serialize(ref cnt);
-//			Point[] newPath=new Point[cnt];
-//			for (int i=0;i<cnt;i++)
-//			{
-//				int x=0;
-//				int y=0;
-//				stream.Serialize(ref x);
-//				stream.Serialize(ref y);
-//				newPath[i]=new Point(x,y);
-//			}
-//		}
-//	}
+	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			int cnt=path.Length;
+			stream.Serialize(ref cnt);
+			for (int i=0;i<cnt;i++)
+			{
+				Point p=path[i];
+				stream.Serialize(ref p.x);
+				stream.Serialize(ref p.y);
+			}
+		}
+		else
+		{
+			int cnt=0;
+			stream.Serialize(ref cnt);
+			Point[] newPath=new Point[cnt];
+			for (int i=0;i<cnt;i++)
+			{
+				int x=0;
+				int y=0;
+				stream.Serialize(ref x);
+				stream.Serialize(ref y);
+				newPath[i]=new Point(x,y);
+			}
+
+		}
+	}
+
 }
