@@ -44,7 +44,20 @@ public class Player : MonoBehaviour
 	}
 
 
-
+	bool checkIfRightMoveandIncrementIndex ()
+	{
+		if (pos.Equals (path [pathIndex + 1])) 
+		{
+			pathIndex++;
+			return true;
+		} 
+		else 
+		{
+			pathIndex=0;
+			pos=new Point(0,0);
+			return false;
+		}
+	}
 
 	public void move(int x)
 	{
@@ -56,7 +69,7 @@ public class Player : MonoBehaviour
 				goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
 		else
-			if (x == 1 && pos.y>0) 
+		if (x == 1 && pos.y>0) 
 		{
 			pos.y-=1;
 			goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
@@ -73,6 +86,8 @@ public class Player : MonoBehaviour
 			pos.x-=1;
 			goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		}
+
+			checkIfRightMoveandIncrementIndex ();
 	}
 	
 }
