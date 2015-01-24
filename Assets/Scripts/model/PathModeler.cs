@@ -23,13 +23,15 @@ public class PathModeler : System.Object
 		int xstep=to.x-from.x;
 		int ystep=to.y-from.y;
 
+		Debug.Log ("step "+xstep + "," + ystep);
+
 		int x=from.x;
 		int y=from.y;
 		while(x!=to.x)
 		{
 			if (xstep<0) x--; else x++;
 			Point v=new Point(x,y);
-			Debug.Log (x+","+y);
+			Debug.Log ("χ:"+x+","+y);
 			steps.Add(v);
 		}
 
@@ -37,7 +39,7 @@ public class PathModeler : System.Object
 		{
 			if (ystep<0) y--; else y++;
 			Point v=new Point(x,y);
-			Debug.Log (x+","+y);
+			Debug.Log ("ψ:"+x+","+y);
 			steps.Add(v);
 		}
 

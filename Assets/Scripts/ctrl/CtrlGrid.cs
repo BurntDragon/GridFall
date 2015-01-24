@@ -12,8 +12,6 @@ public class CtrlGrid : MonoBehaviour
 	void Start () 	
 	{
 		generatePrimitives();
-
-		new PathModeler ().generatePath (new Point(0,0),new Point(width/2,height/2),width+4 );
 	}
 	
 	// Update is called once per frame

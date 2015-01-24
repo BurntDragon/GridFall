@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
 	GameObject goPlayer;
 
+	public bool isMe;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -26,12 +28,15 @@ public class Player : MonoBehaviour
 		goPlayer.transform.localPosition=new Vector3((float)pos.x,(float)pos.y,0);
 		goPlayer.renderer.material.color = Color.red;
 
-		for (int i=0;i<path.Length;i++)
+		if (!isMe)
 		{
-			GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-			go.transform.parent=this.transform;
-			go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
-			go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
+			for (int i=0;i<path.Length;i++)
+			{
+				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+				go.transform.parent=this.transform;
+				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,0);
+				go.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
+			}
 		}
 	}
 	
