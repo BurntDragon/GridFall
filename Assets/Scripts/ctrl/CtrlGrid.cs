@@ -30,8 +30,9 @@ public class CtrlGrid : MonoBehaviour
 			{
 				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Quad);
 				go.transform.parent=this.transform;
-				go.transform.localPosition=new Vector3(x,0,y);
-				go.transform.eulerAngles=new Vector3(90,0,0);
+				go.transform.localPosition=new Vector3(x,y,0);
+				go.transform.localScale=new Vector3(0.9f,0.9f,0.9f);
+//				go.transform.eulerAngles=new Vector3(90,0,0);
 
 
 			}
