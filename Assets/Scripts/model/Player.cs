@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 			pathIndex=0;
 			pos=new Point(0,0);
 			goPlayer.transform.localPosition=new Vector3(0,0,0);
-//				EvtManager.playerReachedEnd(fell);
+//				EvtManager.fell(fell);
 		}
 
 	}
