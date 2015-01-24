@@ -48,10 +48,15 @@ public class Player : MonoBehaviour
 	{
 		if (pos.Equals (path [pathIndex + 1])) 
 		{
-			pathIndex++;
-			if (pathIndex+1==path.Length)
+			if (pathIndex+1>=path.Length)
 			{
 //				EvtManager.playerReachedEnd(player);
+				goPlayer.transform.localPosition=new Vector3(path[pathIndex-1].x,path[pathIndex-1].y,0);
+
+			}
+			else
+			{
+				pathIndex++;
 			}
 
 			return true;
