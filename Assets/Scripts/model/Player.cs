@@ -25,9 +25,7 @@ public class Player : MonoBehaviour
 	private GameObject GoLeftButton;
 	private GameObject GoRightButton;
 	private GameObject GoLocalTime;
-
-
-
+	
 	// Use this for initialization
 	void Awake () 
 	{
@@ -107,13 +105,12 @@ public class Player : MonoBehaviour
 			}
 
 			GoLocalTime.GetComponent<Text> ().text = "You die in: " + System.Math.Round ((double)timeLeftOnTile, 2).ToString ();
-
 		}
 	}
 
 	void createNextStep()
 	{
-		string name=this.gameObject.name+"NextStep";
+		string name=this.gameObject.name+"NextStep Player: " + this.name;
 		GameObject go = GameObject.Find (name);
 		Destroy (go);
 
@@ -137,14 +134,13 @@ public class Player : MonoBehaviour
 
 	void checkIfRightMoveandIncrementIndex ()
 	{
-		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
+		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!! Player: " + this.name);
 		if (pathIndex+1>=path.Length)
 		{
 //				EvtManager.playerReachedEnd(player);
 			goPlayer.transform.localPosition=new Vector3(path[path.Length-1].x,path[path.Length-1].y,0);
 		}
-		else
-		if (pos.Equals (path [pathIndex + 1])) 
+		else if (pos.Equals (path[pathIndex + 1])) 
 		{
 			pathIndex++;
 			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
@@ -153,10 +149,9 @@ public class Player : MonoBehaviour
 		else 
 		{
 			fell();
-
 		}
 
-		createNextStep ();
+		createNextStep();
 	}
 
 	public void move(int x)
@@ -193,7 +188,7 @@ public class Player : MonoBehaviour
 
 	void fell()
 	{
-		Debug.Log ("fell: fellen!!!");
+		Debug.Log ("fell: fellen!!! Player: " + this.name);
 		pathIndex = 0;
 		pos = new Point(spawnPoint.x,spawnPoint.y);
 		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
@@ -229,8 +224,6 @@ public class Player : MonoBehaviour
 //				stream.Serialize(ref y);
 //				newPath[i]=new Point(x,y);
 //			}
-//
 //		}
 //	}
-
 }

@@ -53,4 +53,33 @@ public class EvtManager : MonoBehaviour
 			playerReachedEnd(player);
 		}
 	}
+
+	public static void onTileDown(string tile)
+	{
+		Debug.Log ("EvtManager - onTileDown" + tile);
+		
+		if(tileDown != null)
+		{	
+			tileDown(tile);
+		}
+	}
+	
+	public static void onTileWarn(string tile)
+	{
+		Debug.Log ("EvtManager - onTileWarn" + tile);
+		if(tileWarn != null)
+		{	
+			tileWarn(tile);
+		}
+	}
+
+	public static void onTileUp(string tile)
+	{
+		Debug.Log ("EvtManager - onTileUp" + tile);
+		
+		if(tileUp != null)
+		{	
+			tileUp(tile);
+		}
+	}
 }
