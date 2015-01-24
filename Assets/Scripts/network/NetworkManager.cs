@@ -93,13 +93,14 @@ public class NetworkManager : MonoBehaviour
 
 	private void JoinServer(HostData hostData)
 	{
+		playerCount = hostData.connectedPlayers;
 		Network.Connect(hostData);
 	}
 
 	private void SpawnPlayer()
 	{
 		playerCount++;
-		daGame.addPlayer(playerCount.ToString());
+		daGame.addPlayer(playerCount);
 	}
 
 	private void init()

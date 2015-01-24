@@ -26,7 +26,7 @@ public class Game : MonoBehaviour
 
 	}
 
-	public void addPlayer(string id)
+	public void addPlayer(int id)
 	{
 		Debug.Log ("Game - addPlayer - id" + id);
 		GameObject player = (GameObject) Network.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity, 0);;
@@ -35,11 +35,11 @@ public class Game : MonoBehaviour
 
 		player.name = "player" + id;
 		player.transform.parent = GameObject.Find ("World").transform;
-		player.GetComponent<Player> ().pos = new Point (spawnPoints [playerIDs.Count].x, spawnPoints [playerIDs.Count].y);
-		player.GetComponent<Player> ().spawnPoint = spawnPoints [playerIDs.Count];
+		player.GetComponent<Player> ().pos = new Point (spawnPoints [id].x, spawnPoints [id].y);
+		player.GetComponent<Player> ().spawnPoint = spawnPoints [id];
 //		player.transform = new Vector3 (spawnPoints [playerIDs.Count].x, spawnPoints [playerIDs.Count].y);
 		player.transform.localPosition = Vector3.zero;
-		playerIDs.Add (id);
+		playerIDs.Add (id.ToString());
 
 		if (playerIDs.Count == spawnPoints.Count) 
 		{
