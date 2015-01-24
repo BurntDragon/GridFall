@@ -234,6 +234,9 @@ public class Player : MonoBehaviour
 //		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
 		if (stream.isWriting)
 		{
+			Vector3 pos=transform.localPosition;
+			stream.Serialize(ref pos);
+
 			int cnt=path.Length;
 			stream.Serialize(ref cnt);
 			for (int i=0;i<cnt;i++)
@@ -245,6 +248,10 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
+			Vector3 pos=Vector3.zero;
+			stream.Serialize(ref pos);
+			transform.localPosition=pos;
+
 			int cnt=0;
 			stream.Serialize(ref cnt);
 			Point[] newPath=new Point[cnt];
