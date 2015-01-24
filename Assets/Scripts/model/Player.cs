@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 	GameObject goPlayer;
 
 	public bool isMe;
+	public bool isMoving;
 
 	private GameObject GoUpButton;
 	private GameObject GoDownButton;
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
 			timeLeftOnTile -= Time.deltaTime;
 			if (timeLeftOnTile < 0) 
 			{
-					fell ();
+				fell ();
 			}
 
 			GoLocalTime.GetComponent<Text> ().text = "You die in: " + System.Math.Round ((double)timeLeftOnTile, 2).ToString ();
@@ -136,7 +137,7 @@ public class Player : MonoBehaviour
 
 	void checkIfRightMoveandIncrementIndex ()
 	{
-
+		Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
 		if (pathIndex+1>=path.Length)
 		{
 //				EvtManager.playerReachedEnd(player);
@@ -159,35 +160,41 @@ public class Player : MonoBehaviour
 
 	public void move(int x)
 	{
-		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
+		if (!isMoving)
+		{
+			isMoving=true;
+			CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
 
-		if (x == 0 && pos.y+1<grid.height) 
-		{
-				pos.y+=1;
-		}
-		else
-		if (x == 1 && pos.y>0) 
-		{
-			pos.y-=1;
-		}
-		else
-		if (x == 3 && pos.x+1<grid.width) 
-		{
-			pos.x+=1;
-		}
-		else
-		if (x == 2 && pos.x>0) 
-		{
-			pos.x-=1;
-		}
+			if (x == 0 && pos.y+1<grid.height) 
+			{
+					pos.y+=1;
+			}
+			else
+			if (x == 1 && pos.y>0) 
+			{
+				pos.y-=1;
+			}
+			else
+			if (x == 3 && pos.x+1<grid.width) 
+			{
+				pos.x+=1;
+			}
+			else
+			if (x == 2 && pos.x>0) 
+			{
+				pos.x-=1;
+			}
 
-		checkIfRightMoveandIncrementIndex ();
+			checkIfRightMoveandIncrementIndex ();
+			isMoving=false;
+		}
 	}
 
 	void fell()
 	{
+		Debug.Log ("fell: fellen!!!");
 		pathIndex = 0;
-		pos = spawnPoint;
+		pos = new Point(spawnPoint.x,spawnPoint.y);
 		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
 		timeLeftOnTile = maxTimeLeftOnTile;
 
@@ -195,34 +202,34 @@ public class Player : MonoBehaviour
 		//EvtManager.onPlayerFell(1);
 	}
 
-	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
-	{
-		if (stream.isWriting)
-		{
-			int cnt=path.Length;
-			stream.Serialize(ref cnt);
-			for (int i=0;i<cnt;i++)
-			{
-				Point p=path[i];
-				stream.Serialize(ref p.x);
-				stream.Serialize(ref p.y);
-			}
-		}
-		else
-		{
-			int cnt=0;
-			stream.Serialize(ref cnt);
-			Point[] newPath=new Point[cnt];
-			for (int i=0;i<cnt;i++)
-			{
-				int x=0;
-				int y=0;
-				stream.Serialize(ref x);
-				stream.Serialize(ref y);
-				newPath[i]=new Point(x,y);
-			}
-
-		}
-	}
+//	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+//	{
+//		if (stream.isWriting)
+//		{
+//			int cnt=path.Length;
+//			stream.Serialize(ref cnt);
+//			for (int i=0;i<cnt;i++)
+//			{
+//				Point p=path[i];
+//				stream.Serialize(ref p.x);
+//				stream.Serialize(ref p.y);
+//			}
+//		}
+//		else
+//		{
+//			int cnt=0;
+//			stream.Serialize(ref cnt);
+//			Point[] newPath=new Point[cnt];
+//			for (int i=0;i<cnt;i++)
+//			{
+//				int x=0;
+//				int y=0;
+//				stream.Serialize(ref x);
+//				stream.Serialize(ref y);
+//				newPath[i]=new Point(x,y);
+//			}
+//
+//		}
+//	}
 
 }

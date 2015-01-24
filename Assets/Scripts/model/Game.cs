@@ -48,7 +48,7 @@ public class Game : MonoBehaviour
 		if (playerIDs.Count == spawnPoints.Count) 
 		{
 			//TODO: start da game
-			//isStarted = true;
+			isStarted = true;
 		}
 	}
 }
