@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
 
 	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
-		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
+//		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
 		if (stream.isWriting)
 		{
 			int cnt=path.Length;
@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
 				stream.Serialize(ref y);
 				newPath[i]=new Point(x,y);
 			}
-
+			path=newPath;
 		}
 	}
 

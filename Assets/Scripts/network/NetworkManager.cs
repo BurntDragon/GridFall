@@ -61,13 +61,13 @@ public class NetworkManager : MonoBehaviour
 
 	void OnServerInitialized()
 	{
-		// Debug.Log("Server Initialized");
+		Debug.Log("Server Initialized");
 		init();
 	}
 
 	void OnPlayerConnected()
 	{
-		// Debug.Log("Client connected");
+		Debug.Log("Client connected");
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
@@ -80,7 +80,7 @@ public class NetworkManager : MonoBehaviour
 
 	void OnConnectedToServer()
 	{
-		// Debug.Log("Server Joined");
+		Debug.Log("Joined Server ");
 		init();
 //		SpawnPlayer ();
 	}
