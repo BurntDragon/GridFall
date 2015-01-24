@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 		if (timeLeftOnTile < 0) 
 		{
 //			EvtManager.fell(this);
+			timeLeftOnTile=maxTimeLeftOnTile;
 		}
 	}
 
