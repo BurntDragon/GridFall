@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
 		transform.parent = GameObject.Find("Players").transform;
 		name = "player" + transform.parent.childCount;
 
+		Debug.Log ("Awake from player:" + name);
+
 		gameInstance = GameObject.Find("Main").GetComponent<Game>();
 
 		GoUpButton = GameObject.Find ("UpButton");
