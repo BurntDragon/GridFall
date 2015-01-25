@@ -98,7 +98,6 @@ public class Player : MonoBehaviour
 		{
 			createNextStep();
 		}
-
 	}
 	
 	// Update is called once per frame

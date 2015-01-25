@@ -20,12 +20,12 @@ AnimationClip:
         value: {x: 0, y: 0, z: .504999995}
         inSlope: {x: 0, y: 0, z: -.0599999428}
         outSlope: {x: 0, y: 0, z: -.0599999428}
-        tangentMode: 696975396
+        tangentMode: 763176232
       - time: .0833333358
         value: {x: 0, y: 0, z: .5}
         inSlope: {x: 0, y: 0, z: -.0299999714}
         outSlope: {x: 0, y: 0, z: -.0299999714}
-        tangentMode: 0
+        tangentMode: 544232805
       - time: .166666672
         value: {x: 0, y: 0, z: .5}
         inSlope: {x: 0, y: 0, z: 0}
@@ -35,7 +35,7 @@ AnimationClip:
         value: {x: 0, y: 0, z: 3}
         inSlope: {x: 0, y: 0, z: 10.7142859}
         outSlope: {x: 0, y: 0, z: 10.7142859}
-        tangentMode: -106596
+        tangentMode: 15
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Cube
@@ -47,22 +47,22 @@ AnimationClip:
         value: {x: 1, y: 1, z: 1}
         inSlope: {x: -2.39999986, y: -2.39999986, z: -2.39999986}
         outSlope: {x: -2.39999986, y: -2.39999986, z: -2.39999986}
-        tangentMode: 309997296
+        tangentMode: 64
       - time: .0833333358
         value: {x: .800000012, y: .800000012, z: .800000012}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 2003780709
+        tangentMode: 604635172
       - time: .166666672
         value: {x: .800000012, y: .800000012, z: .800000012}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
+        tangentMode: 620093136
       - time: .400000006
         value: {x: .600000024, y: .600000024, z: .600000024}
         inSlope: {x: -.857142806, y: -.857142806, z: -.857142806}
         outSlope: {x: -.857142806, y: -.857142806, z: -.857142806}
-        tangentMode: 15
+        tangentMode: 1065353216
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Cube
@@ -146,40 +146,6 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: .0833333358
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: .166666672
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: .400000006
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: .416666657
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_IsActive
-    path: Cube
-    classID: 1
-    script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -354,12 +320,39 @@ AnimationClip:
     path: Cube
     classID: 4
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .0833333358
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .166666672
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .400000006
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .416666657
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_IsActive
+    path: Cube
+    classID: 1
+    script: {fileID: 0}
   m_EulerEditorCurves: []
-  m_Events:
-  - time: 0
-    functionName: onTileWarn
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
