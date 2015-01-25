@@ -23,7 +23,27 @@ public class Game : MonoBehaviour
 	
 	void Update () 
 	{
+		if (checkIfWon()) 
+		{
+			GameObject.Find("Main").GetComponent<NetworkManager>().gameUi.SetActive(false);
+			GameObject.Find("Main").GetComponent<NetworkManager>().gameWin.SetActive(true);
+		}
+	}
 
+	public bool checkIfWon()
+	{
+		bool won = false;
+		Transform playersT = GameObject.Find ("Players").transform;
+		for (int i=0;i<playersT.childCount;i++)
+		{
+			Player p=playersT.GetChild(i).gameObject.GetComponent<Player>();
+			if (p!=null)
+			{
+				won=p.hasWon();
+			}
+		}
+
+		return won;
 	}
 
 	public void addPlayer(int id)
@@ -38,7 +58,7 @@ public class Game : MonoBehaviour
 		player.transform.localPosition = Vector3.zero;
 		playerIDs.Add (id.ToString());
 
-		if (playerIDs.Count == spawnPoints.Count) 
+		if (id==1) 
 		{
 			//TODO: start da game
 			isStarted = true;

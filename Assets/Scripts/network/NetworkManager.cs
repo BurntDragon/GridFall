@@ -13,6 +13,7 @@ public class NetworkManager : MonoBehaviour
 	
 	public GameObject menu;
 	public GameObject gameUi;
+	public GameObject gameWin;
 
 	public int playerCount=0;
 

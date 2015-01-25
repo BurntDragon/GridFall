@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 	private GameObject goPlayer;
 
 	public bool isMe;
-	public bool isMoving;
+	public bool isMoving=true;
 
 	private GameObject GoUpButton;
 	private GameObject GoDownButton;
@@ -81,28 +81,35 @@ public class Player : MonoBehaviour
 
 //		if (!isMe)
 //		{
-//			for (int i=0;i<path.Length;i++)
-//			{
-//				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-//				float z=0;
-//				switch (gameObject.name)
-//				{
-//					case "player1": go.renderer.material.color=Color.red; z=-0.2f; break;
-//					case "player2": go.renderer.material.color=Color.blue;z=-0.1f; break;
-//					case "player3": go.renderer.material.color=Color.green;z=0.0f; break;
-//					case "player4": go.renderer.material.color=Color.cyan;z=0.1f; break;
-//				}
-//
-//				go.transform.parent=this.transform;
-//				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,z);
-//				go.transform.localScale=new Vector3(0.2f,0.2f,0.2f);
-//			}
+			for (int i=0;i<path.Length;i++)
+			{
+				GameObject go=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+				float z=0;
+				switch (gameObject.name)
+				{
+					case "player1": go.renderer.material.color=Color.red; z=-0.2f; break;
+					case "player2": go.renderer.material.color=Color.blue;z=-0.1f; break;
+					case "player3": go.renderer.material.color=Color.green;z=0.0f; break;
+					case "player4": go.renderer.material.color=Color.cyan;z=0.1f; break;
+				}
+
+				go.transform.parent=this.transform.parent;
+				go.transform.localPosition=new Vector3((float)path[i].x,(float)path[i].y,z);
+				go.transform.localScale=new Vector3(0.2f,0.2f,0.2f);
+			}
 //		}
 
 		if (isMe)
 		{
 			createPossibleSteps(true,pos);
 			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
+		}
+		else
+		{
+			if (pathIndex<path.Length)
+			{
+				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
+			}
 		}
 	}
 	
@@ -176,6 +183,7 @@ public class Player : MonoBehaviour
 		{
 //				EvtManager.playerReachedEnd(player);
 			goPlayer.transform.localPosition=new Vector3(path[path.Length-1].x,path[path.Length-1].y,0);
+			isMoving=false;
 		}
 		else if (pos.Equals (path[pathIndex + 1])) //next step
 		{
@@ -202,9 +210,8 @@ public class Player : MonoBehaviour
 	public void move(int x)
 	{
 		createPossibleSteps(false,pos);
-		if (!isMoving)
-		{
-			isMoving=true;
+//		if (isMoving)
+//		{
 			CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
 
 			if (x == 0 && pos.y+1<grid.height) 
@@ -225,9 +232,8 @@ public class Player : MonoBehaviour
 			}
 
 			checkIfRightMoveandIncrementIndex ();
-			isMoving=false;
-		}
-		createPossibleSteps(true,pos);
+			createPossibleSteps(true,pos);
+//		}
 	}
 
 	void fell()
@@ -314,8 +320,9 @@ public class Player : MonoBehaviour
 			if (pathIndex!=newPathIndex)
 			{
 				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileUnMarkNext();
+				GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
-			GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
+
 			pathIndex=newPathIndex;
 		}
 	}
@@ -323,5 +330,10 @@ public class Player : MonoBehaviour
 	public static string getTileName(Point p)
 	{
 		return "x"+p.x+"y"+p.y;
+	}
+
+	public bool hasWon()
+	{
+		return pathIndex == path.Length - 1;
 	}
 }
