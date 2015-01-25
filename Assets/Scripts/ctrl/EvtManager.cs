@@ -66,7 +66,7 @@ public class EvtManager : MonoBehaviour
 	
 	public static void onTileWarn(string tile)
 	{
-		// Debug.Log ("EvtManager - onTileWarn" + tile);
+		Debug.Log ("EvtManager - onTileWarn" + tile);
 		if(tileWarn != null)
 		{	
 			tileWarn(tile);

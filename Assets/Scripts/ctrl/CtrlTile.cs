@@ -83,6 +83,7 @@ public class CtrlTile : MonoBehaviour
 
 	public void onTileDown()
 	{
+		timeLeftOnTile = 0;
 		GetComponent<Animator>().SetBool("goUp", false);
 		EvtManager.onTileDown(this.name);
 	}
