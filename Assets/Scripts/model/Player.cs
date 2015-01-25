@@ -25,10 +25,13 @@ public class Player : MonoBehaviour
 	private GameObject GoLeftButton;
 	private GameObject GoRightButton;
 	private GameObject GoLocalTime;
-	
+
+	private CtrlGrid grid;
+
 	// Use this for initialization
 	void Awake () 
 	{
+		grid = GameObject.Find ("Grid").GetComponent<CtrlGrid>();
 		transform.parent = GameObject.Find("Players").transform;
 		name = "player" + transform.parent.childCount;
 
@@ -143,28 +146,23 @@ public class Player : MonoBehaviour
 
 	void createPossibleSteps(bool enableSteps, Point p)
 	{
-		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
-		Point [] neighbours=PathModeler.getPossibleNeighbours(p,grid.width);
-		for (int i=0; i<neighbours.Length; i++) 
-		{
-			string neghborName= "x"+neighbours[i].x+"y"+neighbours[i].y;
-			//// Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
-			GameObject possibleNeghbor = GameObject.Find(neghborName);
+				Point [] neighbours = PathModeler.getPossibleNeighbours (p, grid.width);
 
-			if (possibleNeghbor)
-			{
-				CtrlTile ctrlTile=possibleNeghbor.GetComponent<CtrlTile>();
-				if (enableSteps)
-				{
-					ctrlTile.onTilePossibleNext();
+				for (int i=0; i<neighbours.Length; i++) {
+						string neghborName = "x" + neighbours [i].x + "y" + neighbours [i].y;
+						//// Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
+						GameObject possibleNeghbor = GameObject.Find (neghborName);
+
+						if (possibleNeghbor) {
+								CtrlTile ctrlTile = possibleNeghbor.GetComponent<CtrlTile> ();
+								if (enableSteps) {
+										ctrlTile.onTilePossibleNext ();
+								} else {
+										ctrlTile.onTileUnPossibleNext ();
+								}
+						}
 				}
-				else 
-				{
-					ctrlTile.onTileUnPossibleNext();
-				}
-			}
 		}
-	}
 
 	
 	void checkIfRightMoveandIncrementIndex ()
@@ -315,9 +313,8 @@ public class Player : MonoBehaviour
 				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileUnMarkNext();
 				GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
+
 			pathIndex=newPathIndex;
-
-
 		}
 	}
 
