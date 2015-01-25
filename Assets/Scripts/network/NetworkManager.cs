@@ -99,8 +99,8 @@ public class NetworkManager : MonoBehaviour
 
 	private void SpawnPlayer()
 	{
-		playerCount++;
 		daGame.addPlayer(playerCount);
+		playerCount++;
 	}
 
 	private void init()

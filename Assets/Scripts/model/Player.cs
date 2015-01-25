@@ -238,6 +238,14 @@ public class Player : MonoBehaviour
 //		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
 		if (stream.isWriting)
 		{
+
+			stream.Serialize(ref this.pos.x);
+			stream.Serialize(ref this.pos.y);
+			
+			stream.Serialize(ref spawnPoint.x);
+			stream.Serialize(ref spawnPoint.y);
+
+
 			Vector3 pos=transform.localPosition;
 			stream.Serialize(ref pos);
 
@@ -252,7 +260,17 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
+			int px=0;
+			int py=0;
+			stream.Serialize(ref px);
+			stream.Serialize(ref py);
+			this.pos=new Point(px,py);
 
+			int sx=0;
+			int sy=0;
+			stream.Serialize(ref sx);
+			stream.Serialize(ref sy);
+			this.spawnPoint=new Point(sx,sy);
 
 			Vector3 pos=Vector3.zero;
 			stream.Serialize(ref pos);
