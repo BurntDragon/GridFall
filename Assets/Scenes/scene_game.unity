@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0349edcee9ef5249a7974aa90260fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameName: Grid MindFrack
+  gameName: Grid MindFrack Zaf
   button: {fileID: 114718, guid: 9559a6c5eb2ace845a9a3c12f6358f4a, type: 2}
   menu: {fileID: 1165737105}
   gameUi: {fileID: 1284330660}
@@ -1720,7 +1720,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
