@@ -9,6 +9,9 @@ public class CtrlUiManagerGame : MonoBehaviour
 
 	public Text GoTimeLeft;
 
+	private int a = 0;
+	private int b = 0;
+
 	// Use this for initialization
 	void Awake () 
 	{
@@ -21,7 +24,11 @@ public class CtrlUiManagerGame : MonoBehaviour
 		if (gameInstance.isStarted)
 		{
 			timeLeft -= Time.deltaTime;
-			GoTimeLeft.text = "You all die in: " + System.Math.Round((double) timeLeft, 2).ToString();
+
+			a = (int) Mathf.Round(timeLeft / 60);
+			b = (int) Mathf.Round(timeLeft % 60);
+
+			GoTimeLeft.text = a.ToString() + ":" + b.ToString();
 
 			if (timeLeft < 0)
 			{
