@@ -33,5 +33,7 @@ public class CtrlGrid : MonoBehaviour
 				go.name = "x"+ x.ToString() + "y" + y.ToString();
 			}
 		}
+
+		gameObject.transform.localScale = Vector3.zero;
 	}
 }

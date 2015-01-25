@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 	public Point[] path;
 	public int pathIndex=0;
 	
-	private GameObject goPlayer;
+	GameObject goPlayer;
 
 	public bool isMe;
 	public bool isMoving=true;
@@ -108,7 +108,8 @@ public class Player : MonoBehaviour
 		{
 			if (pathIndex<path.Length)
 			{
-				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
+				Debug.Log(getTileName(path [pathIndex + 1]));
+				GameObject.Find(getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
 		}
 	}
@@ -203,8 +204,6 @@ public class Player : MonoBehaviour
 		{
 			fell();
 		}
-
-
 	}
 
 	public void move(int x)

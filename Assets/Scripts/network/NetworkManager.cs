@@ -14,6 +14,9 @@ public class NetworkManager : MonoBehaviour
 	public GameObject menu;
 	public GameObject gameUi;
 	public GameObject gameWin;
+	public GameObject gameButtonScreen;
+	public GameObject gameButton;
+
 
 	public int playerCount=0;
 
@@ -56,7 +59,8 @@ public class NetworkManager : MonoBehaviour
 					go.transform.Find("Text").GetComponent<Text>().text = d.gameName;
 				}
 			}
-			listNotShow=false;
+
+			listNotShow = false;
 		}
 	}
 
@@ -83,7 +87,6 @@ public class NetworkManager : MonoBehaviour
 	{
 		Debug.Log("Joined Server ");
 		init();
-//		SpawnPlayer ();
 	}
 
 	public void RefreshHostList()
@@ -108,9 +111,10 @@ public class NetworkManager : MonoBehaviour
 	private void init()
 	{
 		menu.SetActive(false);
+		gameButtonScreen.SetActive(true);
 		gameUi.SetActive(true);
 
-		GameObject.Find ("Grid").GetComponent<CtrlGrid> ().generatePrimitives ();
+		GameObject.Find ("Grid").GetComponent<CtrlGrid> ().generatePrimitives();
 
 		SpawnPlayer();
 	}

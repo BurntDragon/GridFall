@@ -12,9 +12,11 @@ public class Game : MonoBehaviour
 	public bool isStarted;
 	public bool isFinished;
 
+	CtrlGrid grid;
+
 	void Awake () 
 	{
-		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
+		grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
 		spawnPoints.Add (new Point (0,0));
 		spawnPoints.Add (new Point (grid.width-1,0));
 		spawnPoints.Add (new Point (0,grid.height-1));
@@ -57,13 +59,12 @@ public class Game : MonoBehaviour
 		player.GetComponent<Player> ().spawnPoint = spawnPoints [id];
 		player.transform.localPosition = Vector3.zero;
 		playerIDs.Add (id.ToString());
+	}
 
-		if (id==1) 
-		{
-			//TODO: start da game
-			isStarted = true;
-			Debug.Log("Game Has freaking σtarted!");
-		}
-
+	public void startGame()
+	{
+		grid.transform.localScale = new Vector3 (1, 1, 1);
+		isStarted = true;
+		Debug.Log("Game Has freaking σtarted!");
 	}
 }
