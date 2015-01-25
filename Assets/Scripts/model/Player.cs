@@ -141,10 +141,10 @@ public class Player : MonoBehaviour
 //		}
 	}
 
-	void createPossibleSteps()
+	void createPossibleSteps(bool enableSteps, Point p)
 	{
 		CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
-		Point [] neighbours=PathModeler.getPossibleNeighbours(pos,grid.width);
+		Point [] neighbours=PathModeler.getPossibleNeighbours(p,grid.width);
 		for (int i=0; i<neighbours.Length; i++) 
 		{
 			string neghborName= "x"+neighbours[i].x+"y"+neighbours[i].y;
@@ -162,12 +162,13 @@ public class Player : MonoBehaviour
 	void checkIfRightMoveandIncrementIndex ()
 	{
 //		// Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
-		if (pathIndex+1>=path.Length)
+		createPossibleSteps(false,pos);
+		if (pathIndex+1>=path.Length) //end of path
 		{
 //				EvtManager.playerReachedEnd(player);
 			goPlayer.transform.localPosition=new Vector3(path[path.Length-1].x,path[path.Length-1].y,0);
 		}
-		else if (pos.Equals (path[pathIndex + 1])) 
+		else if (pos.Equals (path[pathIndex + 1])) //next step
 		{
 			if (pathIndex > 0)
 			{
@@ -186,8 +187,7 @@ public class Player : MonoBehaviour
 			fell();
 		}
 
-		createNextStep();
-		createPossibleSteps();
+		createPossibleSteps(true,pos);
 	}
 
 	public void move(int x)
@@ -300,9 +300,10 @@ public class Player : MonoBehaviour
 
 			int newPathIndex=0;
 			stream.Serialize(ref newPathIndex);
-//			if (pathIndex!=newPathIndex)
+			if (pathIndex!=newPathIndex)
 			{
-				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
+				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileUnMarkNext();
+				GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
 			pathIndex=newPathIndex;
 

@@ -42,8 +42,6 @@ public class CtrlTile : MonoBehaviour
 
 	public void onTileUp(float timeToFall)
 	{
-		GoNext.SetActive (false);
-
 		timeLeftOnTile = timeToFall;
 
 		if (!GetComponent<Animator> ().enabled) 
@@ -67,9 +65,19 @@ public class CtrlTile : MonoBehaviour
 		GoNext.SetActive (true);
 	}
 
+	public void onTileUnMarkNext()
+	{
+		GoNext.SetActive (false);
+	}
+
 	public void onTilePossibleNext()
 	{
 		GoPossible.SetActive (true);
+	}
+
+	public void onTileUnPossibleNext()
+	{
+		GoPossible.SetActive (false);
 	}
 
 
