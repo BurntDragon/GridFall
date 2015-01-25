@@ -9,7 +9,7 @@ function Update ()
 {
 	if (Input.GetMouseButtonDown(0))
 	{
-		Application.LoadLevel("scene_menu");
+		Application.LoadLevel("scene_game");
 	}	
 }
 
@@ -18,6 +18,6 @@ function goToNextInSecs(secs:int)
 	yield WaitForSeconds(3.5);
 	GameObject.Find("Camera").GetComponent(FadeInout).fadeIn();
 	yield WaitForSeconds(2);
-	Application.LoadLevel("scene_menu");
+	Application.LoadLevel("scene_game");
 }
 

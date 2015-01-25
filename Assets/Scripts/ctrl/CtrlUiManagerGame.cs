@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CtrlUiManagerGame : MonoBehaviour 
 {
 	private Game gameInstance;
-	public float timeLeft = 300;
+	public float timeLeft = 180;
 
 	public Text GoTimeLeft;
 
