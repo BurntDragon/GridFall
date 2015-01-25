@@ -265,7 +265,13 @@ public class Player : MonoBehaviour
 			int py=0;
 			stream.Serialize(ref px);
 			stream.Serialize(ref py);
-			this.pos=new Point(px,py);
+			Point newPos=new Point(px,py);
+			if (this.pos!=newPos)
+			{
+				GameObject.Find(getTileName(newPos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
+				GameObject.Find(getTileName(this.pos)).GetComponent<CtrlTile>().onTileDown();
+			}
+			this.pos=newPos;
 
 			int sx=0;
 			int sy=0;
