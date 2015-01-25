@@ -12,9 +12,11 @@ public class CtrlTile : MonoBehaviour
 	public float timeLeftOnTile = 0;
 
 	private GameObject GoNext;
+	private GameObject GoPossible;
 
 	void Awake()
 	{
+		GoPossible = transform.Find("possiblenext").gameObject;
 		GoNext = transform.Find("next").gameObject;
 	}
 
@@ -64,7 +66,13 @@ public class CtrlTile : MonoBehaviour
 	{
 		GoNext.SetActive (true);
 	}
-	
+
+	public void onTilePossibleNext()
+	{
+		GoPossible.SetActive (true);
+	}
+
+
 	public void onTileDown()
 	{
 		GetComponent<Animator>().SetBool("goUp", false);
