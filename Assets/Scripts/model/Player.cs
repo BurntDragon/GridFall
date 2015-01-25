@@ -117,28 +117,28 @@ public class Player : MonoBehaviour
 
 	void createNextStep()
 	{
-//		string name=this.gameObject.name+"NextStep Player: " + this.name;
-//		GameObject go = GameObject.Find (name);
-//		Destroy (go);
-
-		if (pathIndex + 1 < path.Length) 
-		{
-//			go = GameObject.CreatePrimitive (PrimitiveType.Sphere);
-//			switch (gameObject.name)
-//				{
-//				case "player1": go.renderer.material.color=Color.red; break;
-//				case "player2": go.renderer.material.color=Color.blue;break;
-//				case "player3": go.renderer.material.color=Color.green;break;
-//				case "player4": go.renderer.material.color=Color.cyan;break;
-//				}
-//			go.name=name;
-//			go.transform.parent = this.transform;
-//			go.transform.localPosition = new Vector3 ((float)path [pathIndex + 1].x, (float)path [pathIndex + 1].y, 0);
-//			go.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-			string name= "x"+path [pathIndex + 1].x+"y"+(float)path [pathIndex + 1].y;
-			GameObject go = GameObject.Find (name);
-			go.GetComponent<CtrlTile>().onTileMarkNext();
-		}
+////		string name=this.gameObject.name+"NextStep Player: " + this.name;
+////		GameObject go = GameObject.Find (name);
+////		Destroy (go);
+//
+//		if (pathIndex + 1 < path.Length) 
+//		{
+////			go = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+////			switch (gameObject.name)
+////				{
+////				case "player1": go.renderer.material.color=Color.red; break;
+////				case "player2": go.renderer.material.color=Color.blue;break;
+////				case "player3": go.renderer.material.color=Color.green;break;
+////				case "player4": go.renderer.material.color=Color.cyan;break;
+////				}
+////			go.name=name;
+////			go.transform.parent = this.transform;
+////			go.transform.localPosition = new Vector3 ((float)path [pathIndex + 1].x, (float)path [pathIndex + 1].y, 0);
+////			go.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+//			string name= "x"+path [pathIndex + 1].x+"y"+(float)path [pathIndex + 1].y;
+//			GameObject go = GameObject.Find (name);
+//			go.GetComponent<CtrlTile>().onTileMarkNext();
+//		}
 	}
 
 	void createPossibleSteps()
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
 
 			if (possibleNeghbor)
 			{
-				possibleNeghbor.GetComponent<CtrlTile>().onTileMarkNext();
+				possibleNeghbor.GetComponent<CtrlTile>().onTilePossibleNext();
 			}
 		}
 	}
@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
 			{
 				GameObject.Find(getTileName(newPos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 				GameObject.Find(getTileName(this.pos)).GetComponent<CtrlTile>().onTileDown();
-//				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
+				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
 			this.pos=newPos;
 
