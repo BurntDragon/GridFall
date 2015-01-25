@@ -300,7 +300,7 @@ public class Player : MonoBehaviour
 
 			int newPathIndex=0;
 			stream.Serialize(ref newPathIndex);
-			if (pathIndex!=newPathIndex)
+//			if (pathIndex!=newPathIndex)
 			{
 				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
