@@ -216,18 +216,22 @@ public class Player : MonoBehaviour
 			if (x == 0 && pos.y+1<grid.height) //N
 			{
 				pos.y+=1;
+			transform.Find("Robot").transform.localEulerAngles=Vector3.zero;		
 			}
 			else if (x == 1 && pos.y>0) //S
 			{
 				pos.y-=1;
+			transform.Find("Robot").transform.localEulerAngles=new Vector3(0,0,180);		
 			}
 			else if (x == 3 && pos.x+1<grid.width) //E
 			{
 				pos.x+=1;
+				transform.Find("Robot").transform.localEulerAngles=new Vector3(0,0,90);		
 			}
 			else if (x == 2 && pos.x>0) //W
 			{
 				pos.x-=1;
+				transform.Find("Robot").transform.localEulerAngles=new Vector3(0,0,-90);		
 			}
 
 			checkIfRightMoveandIncrementIndex ();
