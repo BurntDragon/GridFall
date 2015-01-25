@@ -153,7 +153,15 @@ public class Player : MonoBehaviour
 
 			if (possibleNeghbor)
 			{
-				possibleNeghbor.GetComponent<CtrlTile>().onTilePossibleNext();
+				CtrlTile ctrlTile=possibleNeghbor.GetComponent<CtrlTile>();
+				if (enableSteps)
+				{
+					ctrlTile.onTilePossibleNext();
+				}
+				else 
+				{
+					ctrlTile.onTileUnPossibleNext();
+				}
 			}
 		}
 	}
@@ -162,7 +170,7 @@ public class Player : MonoBehaviour
 	void checkIfRightMoveandIncrementIndex ()
 	{
 //		// Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
-		createPossibleSteps(false,pos);
+
 		if (pathIndex+1>=path.Length) //end of path
 		{
 //				EvtManager.playerReachedEnd(player);
@@ -187,11 +195,12 @@ public class Player : MonoBehaviour
 			fell();
 		}
 
-		createPossibleSteps(true,pos);
+
 	}
 
 	public void move(int x)
 	{
+		createPossibleSteps(false,pos);
 		if (!isMoving)
 		{
 			isMoving=true;
@@ -217,6 +226,7 @@ public class Player : MonoBehaviour
 			checkIfRightMoveandIncrementIndex ();
 			isMoving=false;
 		}
+		createPossibleSteps(true,pos);
 	}
 
 	void fell()
