@@ -221,12 +221,12 @@ public class Player : MonoBehaviour
 			if (x == 0 && pos.y+1<grid.height) //N
 			{
 				pos.y+=1;
-			transform.Find("Robot").transform.localEulerAngles=Vector3.zero;		
+				transform.Find("Robot").transform.localEulerAngles=Vector3.zero;		
 			}
 			else if (x == 1 && pos.y>0) //S
 			{
 				pos.y-=1;
-			transform.Find("Robot").transform.localEulerAngles=new Vector3(0,0,180);		
+				transform.Find("Robot").transform.localEulerAngles=new Vector3(0,0,180);		
 			}
 			else if (x == 3 && pos.x+1<grid.width) //E
 			{
@@ -246,11 +246,13 @@ public class Player : MonoBehaviour
 
 	void fell()
 	{
+		createPossibleSteps(false,path[pathIndex]);
 		GameObject.Find(getTileName(path[pathIndex])).GetComponent<CtrlTile>().onTileDown();
 
 		//		// Debug.Log ("fell: fellen!!!");
 		pathIndex = 0;
 		pos = new Point(spawnPoint.x,spawnPoint.y);
+		createPossibleSteps(true,pos);
 		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
 		timeLeftOnTile = maxTimeLeftOnTile;
 
@@ -328,8 +330,8 @@ public class Player : MonoBehaviour
 			if (pathIndex!=newPathIndex)
 			{
 				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileUnMarkNext();
-				GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
+			GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 
 			pathIndex=newPathIndex;
 		}
