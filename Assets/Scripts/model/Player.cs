@@ -274,7 +274,6 @@ public class Player : MonoBehaviour
 			{
 				GameObject.Find(getTileName(newPos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 				GameObject.Find(getTileName(this.pos)).GetComponent<CtrlTile>().onTileDown();
-				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
 			this.pos=newPos;
 
@@ -300,6 +299,9 @@ public class Player : MonoBehaviour
 				newPath[i]=new Point(x,y);
 			}
 			path=newPath;
+
+			GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
+
 		}
 	}
 
