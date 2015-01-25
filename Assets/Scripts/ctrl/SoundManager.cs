@@ -4,9 +4,9 @@ using System.Collections;
 [RequireComponent (typeof (AudioSource))]
 public class SoundManager : MonoBehaviour 
 {
-	public AudioClip tileUp;
+	public AudioClip[] tileUp;
 	public AudioClip tileWarn;
-	public AudioClip tileDown;
+	public AudioClip[] tileDown;
 
 	public AudioClip playerFell;
 	public AudioClip playerMove;
@@ -36,8 +36,7 @@ public class SoundManager : MonoBehaviour
 
 	void playTileUp(string tile)
 	{
-		// // Debug.Log ("playTileUp" + tile);
-		GetComponent<AudioSource>().PlayOneShot(tileUp);
+		GetComponent<AudioSource>().PlayOneShot(tileUp[Random.Range(0, (tileUp.Length-1))]);
 	}
 	
 	void playTileWarn(string tile)
@@ -48,8 +47,7 @@ public class SoundManager : MonoBehaviour
 	
 	void playTileDown(string tile)
 	{
-		// // Debug.Log ("playTileDown" + tile);
-		GetComponent<AudioSource>().PlayOneShot(tileDown);
+		GetComponent<AudioSource>().PlayOneShot(tileDown[Random.Range(0, (tileDown.Length-1))]);
 	}
 
 	void playPlayerFell(int player)
