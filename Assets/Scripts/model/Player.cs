@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 		}
 
 		goPlayer = this.gameObject;
-
+		goPlayer.transform.localPosition = new Vector3 (spawnPoint.x, spawnPoint.y, 0);
 //		GameObject goPlayerSphere=GameObject.CreatePrimitive(PrimitiveType.Sphere);
 //		goPlayerSphere.transform.parent=this.transform;
 //		goPlayerSphere.transform.localPosition = Vector3.zero;
@@ -97,9 +97,10 @@ public class Player : MonoBehaviour
 //			}
 //		}
 
-		if (!isMe)
+		if (isMe)
 		{
-			createNextStep();
+			createPossibleSteps(true,pos);
+			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 		}
 	}
 	
@@ -311,9 +312,8 @@ public class Player : MonoBehaviour
 			if (pathIndex!=newPathIndex)
 			{
 				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileUnMarkNext();
-				GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
-
+			GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			pathIndex=newPathIndex;
 		}
 	}

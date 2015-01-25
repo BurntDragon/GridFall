@@ -42,6 +42,8 @@ public class Game : MonoBehaviour
 		{
 			//TODO: start da game
 			isStarted = true;
+			Debug.Log("Game Has freaking σtarted!");
 		}
+
 	}
 }
