@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
 				fell ();
 			}
 
-			GoLocalTime.GetComponent<Text> ().text = "You die in: " + System.Math.Round ((double)timeLeftOnTile, 2).ToString ();
+			GoLocalTime.GetComponent<Text> ().text = System.Math.Round ((double)timeLeftOnTile, 2).ToString ();
 		}
 	}
 
