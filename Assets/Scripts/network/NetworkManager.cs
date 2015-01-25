@@ -73,6 +73,12 @@ public class NetworkManager : MonoBehaviour
 	void OnPlayerConnected()
 	{
 		Debug.Log("Client connected");
+
+		if (Network.isServer) 
+		{
+			gameButton.GetComponent<Button>().interactable = true;
+			gameButton.transform.Find("Text").GetComponent<Text>().text = "Start Game!";
+		}
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
@@ -112,6 +118,7 @@ public class NetworkManager : MonoBehaviour
 	{
 		menu.SetActive(false);
 		gameButtonScreen.SetActive(true);
+
 		gameUi.SetActive(true);
 
 		GameObject.Find ("Grid").GetComponent<CtrlGrid> ().generatePrimitives();

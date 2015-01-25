@@ -361,6 +361,8 @@ MonoBehaviour:
   - {fileID: 161782, guid: 037d0a7a37756fe4f8f6736017fa92dd, type: 2}
   - {fileID: 161782, guid: 198c375700f676e42a09f2e12e596ac5, type: 2}
   - {fileID: 161782, guid: 71776ad25f88f9545bc180f71c3ba338, type: 2}
+  gameUi: {fileID: 1284330660}
+  gameButtonScreen: {fileID: 411715498}
   playerIDs: []
   spawnPoints: []
   isStarted: 0
@@ -874,7 +876,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 596082606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 265830536}
+        m_MethodName: startGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &596082606

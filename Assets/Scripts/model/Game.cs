@@ -6,6 +6,9 @@ public class Game : MonoBehaviour
 {
 	public GameObject[] goPlayerPrefabs;
 
+	public GameObject gameUi;
+	public GameObject gameButtonScreen;
+
 	public List<string> playerIDs = new List<string>();
 	public List<Point> spawnPoints = new List<Point>();
 
@@ -13,6 +16,8 @@ public class Game : MonoBehaviour
 	public bool isFinished;
 
 	CtrlGrid grid;
+
+	private bool initGrid = false;
 
 	void Awake () 
 	{
@@ -32,6 +37,15 @@ public class Game : MonoBehaviour
 				GameObject.Find("Main").GetComponent<NetworkManager>().gameUi.SetActive(false);
 				GameObject.Find("Main").GetComponent<NetworkManager>().gameWin.SetActive(true);
 			}
+		}
+
+		if (isStarted && !initGrid) 
+		{
+			grid.transform.localScale = new Vector3 (1, 1, 1);
+			initGrid = true;
+
+			gameButtonScreen.SetActive(false);
+			gameUi.SetActive(true);
 		}
 	}
 
@@ -68,7 +82,6 @@ public class Game : MonoBehaviour
 
 	public void startGame()
 	{
-		grid.transform.localScale = new Vector3 (1, 1, 1);
 		isStarted = true;
 		Debug.Log("Game Has freaking σtarted!");
 	}

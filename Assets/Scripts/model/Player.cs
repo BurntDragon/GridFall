@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 	public bool isMe;
 	public bool isMoving=true;
 
+	public GameObject gameUi;
+
 	private GameObject GoUpButton;
 	private GameObject GoDownButton;
 	private GameObject GoLeftButton;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
 
 		gameInstance = GameObject.Find("Main").GetComponent<Game>();
 
+		gameUi = GameObject.Find ("GameUi");
 		GoUpButton = GameObject.Find ("UpButton");
 		GoDownButton = GameObject.Find ("DownButton");
 		GoLeftButton = GameObject.Find ("LeftButton");
@@ -58,6 +61,8 @@ public class Player : MonoBehaviour
 
 			GoRightButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
 			GoRightButton.GetComponent<Button> ().onClick.AddListener (() => move (3));
+
+			gameUi.SetActive(false);
 		}
 	}
 
@@ -117,7 +122,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (gameInstance.isStarted) 
+		if (gameInstance.isStarted && networkView.isMine) 
 		{
 			timeLeftOnTile -= Time.deltaTime;
 			if (timeLeftOnTile < 0) 
