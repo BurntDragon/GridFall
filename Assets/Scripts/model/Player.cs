@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
-		transform.parent=GameObject.Find("World").transform;
+		transform.parent = GameObject.Find("Players").transform;
+		name = "player" + transform.parent.childCount;
 
 		gameInstance = GameObject.Find("Main").GetComponent<Game>();
 
