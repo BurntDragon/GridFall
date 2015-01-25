@@ -62,7 +62,7 @@ public class CtrlTile : MonoBehaviour
 
 	public void onTileMarkNext()
 	{
-		Debug.Log("onTileMarkNext");
+		// Debug.Log("onTileMarkNext");
 		GoNext.SetActive (true);
 	}
 

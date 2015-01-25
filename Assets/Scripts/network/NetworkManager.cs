@@ -66,13 +66,13 @@ public class NetworkManager : MonoBehaviour
 
 	void OnServerInitialized()
 	{
-		Debug.Log("Server Initialized");
+		// Debug.Log("Server Initialized");
 		init();
 	}
 
 	void OnPlayerConnected()
 	{
-		Debug.Log("Client connected");
+		// Debug.Log("Client connected");
 
 		if (Network.isServer) 
 		{
@@ -91,7 +91,7 @@ public class NetworkManager : MonoBehaviour
 
 	void OnConnectedToServer()
 	{
-		Debug.Log("Joined Server ");
+		// Debug.Log("Joined Server ");
 		init();
 	}
 
@@ -109,7 +109,7 @@ public class NetworkManager : MonoBehaviour
 
 	private void SpawnPlayer()
 	{
-		Debug.Log ("SpawnPlayer:" + playerCount);
+		// Debug.Log ("SpawnPlayer:" + playerCount);
 		daGame.addPlayer(playerCount);
 		playerCount++;
 	}

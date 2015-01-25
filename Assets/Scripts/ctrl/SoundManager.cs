@@ -36,19 +36,19 @@ public class SoundManager : MonoBehaviour
 
 	void playTileUp(string tile)
 	{
-		// Debug.Log ("playTileUp" + tile);
+		// // Debug.Log ("playTileUp" + tile);
 		GetComponent<AudioSource>().PlayOneShot(tileUp);
 	}
 	
 	void playTileWarn(string tile)
 	{
-		// Debug.Log ("playTileWarn" + tile);
+		// // Debug.Log ("playTileWarn" + tile);
 		GetComponent<AudioSource>().PlayOneShot(tileWarn);
 	}
 	
 	void playTileDown(string tile)
 	{
-		// Debug.Log ("playTileDown" + tile);
+		// // Debug.Log ("playTileDown" + tile);
 		GetComponent<AudioSource>().PlayOneShot(tileDown);
 	}
 

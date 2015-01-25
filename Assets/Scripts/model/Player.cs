@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 		transform.parent = GameObject.Find("Players").transform;
 		name = "player" + transform.parent.childCount;
 
-		Debug.Log ("Awake from player:" + name);
+		//// Debug.Log ("Awake from player:" + name);
 
 		gameInstance = GameObject.Find("Main").GetComponent<Game>();
 
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 		{
 			if (pathIndex<path.Length)
 			{
-				Debug.Log(getTileName(path [pathIndex + 1]));
+				// Debug.Log(getTileName(path [pathIndex + 1]));
 				GameObject.Find(getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
 		}
@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
 
 				for (int i=0; i<neighbours.Length; i++) {
 						string neghborName = "x" + neighbours [i].x + "y" + neighbours [i].y;
-						//// Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
+						//// // Debug.Log("createPossibleSteps - nameOfNeighbor:" + neghborName);
 						GameObject possibleNeghbor = GameObject.Find (neghborName);
 
 						if (possibleNeghbor) {
@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
 	
 	void checkIfRightMoveandIncrementIndex ()
 	{
-//		// Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
+//		// // Debug.Log ("checkIfRightMoveandIncrementIndex: checen!!!");
 
 		if (pathIndex+1>=path.Length) //end of path
 		{
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
 			goPlayer.transform.localPosition = new Vector3 ((float)pos.x, (float)pos.y, 0);
 			timeLeftOnTile=maxTimeLeftOnTile;
 
-			//// Debug.Log("checkIfRightMoveandIncrementIndex - tileup: " + getTileName(pos));
+			//// // Debug.Log("checkIfRightMoveandIncrementIndex - tileup: " + getTileName(pos));
 			GameObject.Find(getTileName(pos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 		} 
 		else 
@@ -251,7 +251,7 @@ public class Player : MonoBehaviour
 		createPossibleSteps(false,path[pathIndex]);
 		GameObject.Find(getTileName(path[pathIndex])).GetComponent<CtrlTile>().onTileDown();
 
-		//		// Debug.Log ("fell: fellen!!!");
+		//		// // Debug.Log ("fell: fellen!!!");
 		pathIndex = 0;
 		pos = new Point(spawnPoint.x,spawnPoint.y);
 		createPossibleSteps(true,pos);
@@ -264,7 +264,7 @@ public class Player : MonoBehaviour
 
 	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
-//		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
+//		// Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
 		if (stream.isWriting)
 		{
 

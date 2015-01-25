@@ -58,7 +58,7 @@ public class Game : MonoBehaviour
 			Player p=playersT.GetChild(i).gameObject.GetComponent<Player>();
 			if (p!=null)
 			{
-				won=p.hasWon();
+				won = won & p.hasWon();
 			}
 		}
 
@@ -68,7 +68,7 @@ public class Game : MonoBehaviour
 
 	public void addPlayer(int id)
 	{
-		Debug.Log ("Game - addPlayer - id" + id);
+		// Debug.Log ("Game - addPlayer - id" + id);
 		GameObject player = (GameObject) Network.Instantiate(goPlayerPrefabs[id], Vector3.zero, Quaternion.identity, 0);;
 
 		player.GetComponent<Player>().isMe = player.GetComponent<NetworkView>().isMine;
@@ -83,7 +83,7 @@ public class Game : MonoBehaviour
 	public void startGame()
 	{
 		isStarted = true;
-		Debug.Log("Game Has freaking σtarted!");
+		// Debug.Log("Game Has freaking σtarted!");
 	}
 	
 	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)

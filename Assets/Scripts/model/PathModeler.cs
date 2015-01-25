@@ -21,7 +21,7 @@ public class PathModeler : System.Object
 		steps.Add(from);
 
 
-//		// Debug.Log ("step "+xstep + "," + ystep);
+//		// // Debug.Log ("step "+xstep + "," + ystep);
 
 		Point milestone1 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
 		Point milestone2 = new Point (Random.Range (1, bounds - 2), Random.Range (1, bounds - 2));
@@ -47,7 +47,7 @@ public class PathModeler : System.Object
 		{
 			if (xstep<0) x--; else x++;
 			Point v=new Point(x,y);
-			//			// Debug.Log ("χ:"+x+","+y);
+			//			// // Debug.Log ("χ:"+x+","+y);
 			steps.Add(v);
 		}
 		
@@ -55,7 +55,7 @@ public class PathModeler : System.Object
 		{
 			if (ystep<0) y--; else y++;
 			Point v=new Point(x,y);
-			//			// Debug.Log ("ψ:"+x+","+y);
+			//			// // Debug.Log ("ψ:"+x+","+y);
 			steps.Add(v);
 		}
 
@@ -67,7 +67,7 @@ public class PathModeler : System.Object
 		{
 			if (xstep<0) x--; else x++;
 			Point v=new Point(x,y);
-			//			// Debug.Log ("χ:"+x+","+y);
+			//			// // Debug.Log ("χ:"+x+","+y);
 			steps.Add(v);
 		}
 		
@@ -75,7 +75,7 @@ public class PathModeler : System.Object
 		{
 			if (ystep<0) y--; else y++;
 			Point v=new Point(x,y);
-			//			// Debug.Log ("ψ:"+x+","+y);
+			//			// // Debug.Log ("ψ:"+x+","+y);
 			steps.Add(v);
 		}
 
@@ -87,7 +87,7 @@ public class PathModeler : System.Object
 		{
 			if (xstep<0) x--; else x++;
 			Point v=new Point(x,y);
-			//			// Debug.Log ("χ:"+x+","+y);
+			//			// // Debug.Log ("χ:"+x+","+y);
 			steps.Add(v);
 		}
 
@@ -96,7 +96,7 @@ public class PathModeler : System.Object
 		{
 			if (ystep<0) y--; else y++;
 			Point v=new Point(x,y);
-			//			// Debug.Log ("ψ:"+x+","+y);
+			//			// // Debug.Log ("ψ:"+x+","+y);
 			steps.Add(v);
 		}
 
