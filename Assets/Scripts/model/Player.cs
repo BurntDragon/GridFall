@@ -238,6 +238,7 @@ public class Player : MonoBehaviour
 //		Debug.Log ("OnSerializeNetworkView :" + gameObject.name);
 		if (stream.isWriting)
 		{
+			stream.Serialize(ref this.pathIndex);
 
 			stream.Serialize(ref this.pos.x);
 			stream.Serialize(ref this.pos.y);
@@ -260,6 +261,10 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
+			int newPathIndex=0;
+			stream.Serialize(ref newPathIndex);
+			pathIndex=newPathIndex;
+
 			int px=0;
 			int py=0;
 			stream.Serialize(ref px);
@@ -269,6 +274,7 @@ public class Player : MonoBehaviour
 			{
 				GameObject.Find(getTileName(newPos)).GetComponent<CtrlTile>().onTileUp(timeLeftOnTile);
 				GameObject.Find(getTileName(this.pos)).GetComponent<CtrlTile>().onTileDown();
+				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
 			this.pos=newPos;
 
