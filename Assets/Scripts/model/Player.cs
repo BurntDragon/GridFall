@@ -320,8 +320,8 @@ public class Player : MonoBehaviour
 			if (pathIndex!=newPathIndex)
 			{
 				GameObject.Find (getTileName(path [pathIndex + 1])).GetComponent<CtrlTile>().onTileUnMarkNext();
+				GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 			}
-			GameObject.Find (getTileName(path [newPathIndex + 1])).GetComponent<CtrlTile>().onTileMarkNext();
 
 			pathIndex=newPathIndex;
 		}
