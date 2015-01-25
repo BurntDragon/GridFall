@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
 			if (x == 0 && pos.y+1<grid.height) //N
 			{
 				pos.y+=1;
-				transform.Find("Robot").transform.localEulerAngles=Vector3.zero;		
+				transform.Find("Robot").transform.localEulerAngles=Vector3.zero;
 			}
 			else if (x == 1 && pos.y>0) //S
 			{
@@ -238,6 +238,8 @@ public class Player : MonoBehaviour
 				pos.x-=1;
 				transform.Find("Robot").transform.localEulerAngles=new Vector3(0,0,-90);		
 			}
+			
+			GetComponent<Animator>().SetBool("walk",true);
 
 			checkIfRightMoveandIncrementIndex ();
 			createPossibleSteps(true,pos);
@@ -345,5 +347,10 @@ public class Player : MonoBehaviour
 	public bool hasWon()
 	{
 		return pathIndex == path.Length - 1;
+	}
+
+	public void resetAnimationState()
+	{
+		GetComponent<Animator>().SetBool("walk",false);
 	}
 }
