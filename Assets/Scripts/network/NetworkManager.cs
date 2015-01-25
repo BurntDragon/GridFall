@@ -99,6 +99,7 @@ public class NetworkManager : MonoBehaviour
 
 	private void SpawnPlayer()
 	{
+		Debug.Log ("SpawnPlayer:" + playerCount);
 		daGame.addPlayer(playerCount);
 		playerCount++;
 	}

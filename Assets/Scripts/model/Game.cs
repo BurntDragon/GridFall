@@ -33,11 +33,8 @@ public class Game : MonoBehaviour
 
 		player.GetComponent<Player>().isMe = player.GetComponent<NetworkView>().isMine;
 
-		player.name = "player" + id;
-		player.transform.parent = GameObject.Find ("World").transform;
 		player.GetComponent<Player> ().pos = new Point (spawnPoints [id].x, spawnPoints [id].y);
 		player.GetComponent<Player> ().spawnPoint = spawnPoints [id];
-//		player.transform = new Vector3 (spawnPoints [playerIDs.Count].x, spawnPoints [playerIDs.Count].y);
 		player.transform.localPosition = Vector3.zero;
 		playerIDs.Add (id.ToString());
 
