@@ -213,19 +213,19 @@ public class Player : MonoBehaviour
 //		{
 			CtrlGrid grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
 
-			if (x == 0 && pos.y+1<grid.height) 
+			if (x == 0 && pos.y+1<grid.height) //N
 			{
 				pos.y+=1;
 			}
-			else if (x == 1 && pos.y>0) 
+			else if (x == 1 && pos.y>0) //S
 			{
 				pos.y-=1;
 			}
-			else if (x == 3 && pos.x+1<grid.width) 
+			else if (x == 3 && pos.x+1<grid.width) //E
 			{
 				pos.x+=1;
 			}
-			else if (x == 2 && pos.x>0) 
+			else if (x == 2 && pos.x>0) //W
 			{
 				pos.x-=1;
 			}
