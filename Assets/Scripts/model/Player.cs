@@ -69,10 +69,10 @@ public class Player : MonoBehaviour
 
 		goPlayer = this.gameObject;
 
-		GameObject goPlayerSphere=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		goPlayerSphere.transform.parent=this.transform;
-		goPlayerSphere.transform.localPosition = Vector3.zero;
-		goPlayerSphere.renderer.material.color = Color.red;
+//		GameObject goPlayerSphere=GameObject.CreatePrimitive(PrimitiveType.Sphere);
+//		goPlayerSphere.transform.parent=this.transform;
+//		goPlayerSphere.transform.localPosition = Vector3.zero;
+//		goPlayerSphere.renderer.material.color = Color.red;
 
 //		if (!isMe)
 //		{
