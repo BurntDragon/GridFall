@@ -112,21 +112,6 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1102 &110200000
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: possibleNextShow
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: e5937b83f10981e4f9598f895bac024d, type: 2}
-  m_ParentStateMachine: {fileID: 110739642}
-  m_Position: {x: 47, y: 5, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
 --- !u!1102 &110247436
 State:
   m_ObjectHideFlags: 3
@@ -184,7 +169,6 @@ StateMachine:
   - {fileID: 110265742}
   - {fileID: 110247436}
   - {fileID: 110299816}
-  - {fileID: 110200000}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:

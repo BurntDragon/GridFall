@@ -91,7 +91,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431786}
-  - 95: {fileID: 9531790}
   m_Layer: 0
   m_Name: RobotGen02
   m_TagString: Untagged
@@ -141,6 +140,7 @@ GameObject:
   - 4: {fileID: 461782}
   - 148: {fileID: 14818964}
   - 114: {fileID: 11418964}
+  - 95: {fileID: 9595436}
   m_Layer: 0
   m_Name: player 3
   m_TagString: Untagged
@@ -167,12 +167,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131778}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: .0112304688, y: -.111892939, z: -.621670365}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: -1}
+  m_LocalPosition: {x: 0, y: -0, z: .0325489938}
+  m_LocalScale: {x: 1.18110228, y: 1.18110132, z: 1.18110132}
   m_Children: []
-  m_Father: {fileID: 431790}
-  m_RootOrder: 2
+  m_Father: {fileID: 431782}
+  m_RootOrder: 0
 --- !u!4 &431780
 Transform:
   m_ObjectHideFlags: 1
@@ -194,7 +194,8 @@ Transform:
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 0, y: .0112132495, z: 4.90146701e-10}
   m_LocalScale: {x: .0253999997, y: .0253999997, z: .0253999997}
-  m_Children: []
+  m_Children:
+  - {fileID: 431778}
   m_Father: {fileID: 431786}
   m_RootOrder: 1
 --- !u!4 &431784
@@ -248,7 +249,6 @@ Transform:
   m_Children:
   - {fileID: 431788}
   - {fileID: 431786}
-  - {fileID: 431778}
   m_Father: {fileID: 416906}
   m_RootOrder: 0
 --- !u!4 &461782
@@ -258,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416906}
@@ -359,16 +359,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131788}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &9531790
+--- !u!95 &9595436
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131786}
+  m_GameObject: {fileID: 161782}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 29b1d78403340424ba13a9f328d3ebb9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c78310ae01cbb48bf05e602acae35b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

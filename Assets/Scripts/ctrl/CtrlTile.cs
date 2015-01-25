@@ -73,15 +73,14 @@ public class CtrlTile : MonoBehaviour
 
 	public void onTilePossibleNext()
 	{
-		GoPossible.SetActive (true);
+		GoPossible.SetActive(true);
 	}
 
 	public void onTileUnPossibleNext()
 	{
 		GoPossible.SetActive (false);
 	}
-
-
+	
 	public void onTileDown()
 	{
 		timeLeftOnTile = 0;
