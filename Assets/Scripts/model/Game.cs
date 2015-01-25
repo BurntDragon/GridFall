@@ -16,19 +16,22 @@ public class Game : MonoBehaviour
 
 	void Awake () 
 	{
-		grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
-		spawnPoints.Add (new Point (0,0));
-		spawnPoints.Add (new Point (grid.width-1,0));
-		spawnPoints.Add (new Point (0,grid.height-1));
-		spawnPoints.Add (new Point (grid.width-1,grid.height-1));
+			grid = GameObject.Find ("Grid").GetComponent<CtrlGrid> ();
+			spawnPoints.Add (new Point (0,0));
+			spawnPoints.Add (new Point (grid.width-1,0));
+			spawnPoints.Add (new Point (0,grid.height-1));
+			spawnPoints.Add (new Point (grid.width-1,grid.height-1));
 	}
 	
 	void Update () 
 	{
-		if (checkIfWon()) 
+		if (networkView.isMine)
 		{
-			GameObject.Find("Main").GetComponent<NetworkManager>().gameUi.SetActive(false);
-			GameObject.Find("Main").GetComponent<NetworkManager>().gameWin.SetActive(true);
+			if (checkIfWon()) 
+			{
+				GameObject.Find("Main").GetComponent<NetworkManager>().gameUi.SetActive(false);
+				GameObject.Find("Main").GetComponent<NetworkManager>().gameWin.SetActive(true);
+			}
 		}
 	}
 
@@ -48,6 +51,7 @@ public class Game : MonoBehaviour
 		return won;
 	}
 
+
 	public void addPlayer(int id)
 	{
 		Debug.Log ("Game - addPlayer - id" + id);
@@ -61,10 +65,25 @@ public class Game : MonoBehaviour
 		playerIDs.Add (id.ToString());
 	}
 
+
 	public void startGame()
 	{
 		grid.transform.localScale = new Vector3 (1, 1, 1);
 		isStarted = true;
 		Debug.Log("Game Has freaking σtarted!");
+	}
+	
+	void  OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			stream.Serialize(ref this.isStarted);
+		}
+		else
+		{
+			bool ss=false;
+			stream.Serialize(ref ss);
+			this.isStarted=ss;
+		}
 	}
 }

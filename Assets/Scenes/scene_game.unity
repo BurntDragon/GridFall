@@ -337,6 +337,7 @@ GameObject:
   - 4: {fileID: 265830537}
   - 114: {fileID: 265830536}
   - 114: {fileID: 265830538}
+  - 148: {fileID: 265830539}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -395,6 +396,18 @@ MonoBehaviour:
   gameButtonScreen: {fileID: 411715498}
   gameButton: {fileID: 596082603}
   playerCount: 0
+--- !u!148 &265830539
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265830535}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 265830536}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
 --- !u!1 &300461847
 GameObject:
   m_ObjectHideFlags: 0
