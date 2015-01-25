@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Game : MonoBehaviour 
 {
-	public GameObject playerPrefab;
+	public GameObject[] goPlayerPrefabs;
 
 	public List<string> playerIDs = new List<string>();
 	public List<Point> spawnPoints = new List<Point>();
@@ -29,7 +29,7 @@ public class Game : MonoBehaviour
 	public void addPlayer(int id)
 	{
 		Debug.Log ("Game - addPlayer - id" + id);
-		GameObject player = (GameObject) Network.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity, 0);;
+		GameObject player = (GameObject) Network.Instantiate(goPlayerPrefabs[id], Vector3.zero, Quaternion.identity, 0);;
 
 		player.GetComponent<Player>().isMe = player.GetComponent<NetworkView>().isMine;
 

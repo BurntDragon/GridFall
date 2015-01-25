@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
 	public Point spawnPoint=new Point(0,0);
 	public Point[] path;
 	public int pathIndex=0;
-
-	GameObject goPlayer;
+	
+	private GameObject goPlayer;
 
 	public bool isMe;
 	public bool isMoving;
